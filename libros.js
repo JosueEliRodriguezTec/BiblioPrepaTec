@@ -98,7 +98,7 @@ void anim.offsetWidth;
 anim.classList.add("show");
 
 // Si ya llegó a 30 monedas
-if(jugador.monedas >= 15){
+if(jugador.monedas >= 30){
     alert("Entró al if");
     confetti({
 
