@@ -32,9 +32,16 @@
 
    function libro1(){
 
-    sumarMonedas("libro1");
+   
+        const ventana = window.open("", "_blank");
 
-    abrirLibro("index.html");
+    sumarMonedas("libro2");
+
+    setTimeout(() => {
+
+    ventana.location.href = "https://libbyapp.com/search/bibliotecatec/spotlight-books/page-1/570224"
+
+    },1000);
 
 }
     function libro2(){
