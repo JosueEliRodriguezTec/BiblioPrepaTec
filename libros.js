@@ -30,20 +30,13 @@
 
     document.getElementById("coins").innerHTML = jugador.monedas;
 
-    function libro1(){
-
-         const ventana = window.open("", "_blank");
+   function libro1(){
 
     sumarMonedas("libro1");
 
-    setTimeout(() => {
+    abrirLibro("https://libbyapp.com/search/bibliotecatec/spotlight-books/page-1/570224");
 
-        ventana.location.href = "https://libbyapp.com/search/bibliotecatec/spotlight-books/page-1/570224";
-
-    },1000);
-
-    }
-
+}
     function libro2(){
 
         const ventana = window.open("", "_blank");
@@ -135,3 +128,18 @@ function cerrarMedalla(){
 
 }
 
+function abrirLibro(url){
+
+    document.getElementById("iframeLibro").src = url;
+
+    document.getElementById("visorLibro").style.display = "flex";
+
+}
+
+function cerrarLibro(){
+
+    document.getElementById("visorLibro").style.display = "none";
+
+    document.getElementById("iframeLibro").src = "";
+
+}
