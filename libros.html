@@ -20,6 +20,8 @@
 
     <link rel="stylesheet" href="style.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
 </head>
 
 <body>
@@ -89,10 +91,34 @@
 
 </div>
 
-        
+        <div id="medallaBronce" class="medallaModal">
 
-    <script src="libros.js"></script>
+    <div class="medallaBox">
+
+        <h1>🎉 ¡Felicidades!</h1>
+
+        <div class="medallaIcono">🥉</div>
+
+        <h2>Has obtenido la</h2>
+
+        <h1>MEDALLA DE BRONCE</h1>
+
+        <p>
+            Has completado el reto de exploración de libros.
+        </p>
+
+        <button onclick="cerrarMedalla()">
+            Continuar
+        </button>
+
+    </div>
+
+</div>
+
+<script src="libros.js"></script>
 
 </body>
+
+
 
 </html>
