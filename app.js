@@ -8,6 +8,19 @@ let touchStartX = 0;
 let touchStartY = 0;
 var a;
 let gameStarted = false;
+let jugador = {
+
+    puntos: 0,
+
+    monedas: 0,
+
+    nivel: 1,
+
+    librosVisitados: 0,
+
+    medalla: "Ninguna"
+
+};
 
 var aud1 = document.getElementById("aud1");
 
@@ -25,12 +38,21 @@ document.getElementById("mut").addEventListener("click", () => {
 
 function ply() {
 
+    document.getElementById("introModal").style.display = "flex";
+
+}
+
+function startGame() {
+
+    document.getElementById("introModal").style.display = "none";
+
     var aud = document.getElementById("aud");
     aud.play();
 
     document.getElementById("board1").style.display = "none";
     gameStarted = true;
     a = setInterval(tim, 1500);
+
 }
 
 var scr;
@@ -53,30 +75,42 @@ function tim() {
 
     if (time <= 0) {
 
-        clearInterval(a);
+    clearInterval(a);
 
-        document.getElementById("time").innerHTML = "0";
+    jugador.monedas = 15;
 
-        // Oculta el tablero
-        document.getElementById("board").style.display = "none";
+    document.getElementById("coins").innerHTML = jugador.monedas;
 
-        // Muestra la pantalla de resultados
-        document.getElementById("board1").style.display = "flex";
+    localStorage.setItem(
+        "jugador",
+        JSON.stringify(jugador)
+    );
 
-        document.getElementById("inicio").style.display = "none";
+    document.getElementById("time").innerHTML = "0";
 
-        document.getElementById("final").style.display = "flex";
+    // Oculta el tablero
+    document.getElementById("board").style.display = "none";
 
-        // Muestra la puntuación obtenida
-        document.getElementById("finalScore").innerHTML = scr;
+    // Muestra la pantalla final
+    document.getElementById("board1").style.display = "flex";
+    document.getElementById("inicio").style.display = "none";
+    document.getElementById("final").style.display = "flex";
 
-        // Cambia el mensaje según la puntuación
-        
+    // Mostrar puntuación
+    document.getElementById("finalScore").innerHTML = scr;
 
-        document.getElementById("mensajeFinal").innerHTML = mensaje;
+   const anim = document.getElementById("coinAnimation");
 
-        return;
-    }
+console.log(anim);
+
+anim.classList.remove("show");
+
+void anim.offsetWidth;
+
+anim.classList.add("show");
+
+    return;
+}
 
 }
 
@@ -88,7 +122,10 @@ function create1() {
 
     scr = 0;
 
-    document.getElementById("score").innerHTML = scr;
+    
+
+      document.getElementById("score").innerHTML = scr;
+    document.getElementById("coins").innerHTML = jugador.monedas;
 
     var board = document.getElementById("board");
 
@@ -238,11 +275,14 @@ function check() {
 
                 flg = true;
 if (gameStarted) {
+
     scr += 10;
+
+    jugador.puntos = scr;
+
 }
 
 document.getElementById("score").innerHTML = scr;
-                document.getElementById("score").innerHTML = scr;
             }
         }
     }
@@ -263,11 +303,14 @@ document.getElementById("score").innerHTML = scr;
             flg = true;
 
 if (gameStarted) {
+
     scr += 10;
+
+    jugador.puntos = scr;
+
 }
 
 document.getElementById("score").innerHTML = scr;
-            document.getElementById("score").innerHTML = scr;
         }
     }
 
@@ -339,4 +382,8 @@ firstBox = null;
 }
      
     
+function irLibros() {
 
+    window.location.href = "libros.html";
+
+}
