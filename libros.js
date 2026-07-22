@@ -97,16 +97,41 @@ void anim.offsetWidth;
 
 anim.classList.add("show");
 
-     //   localStorage.setItem(
-       //     "jugador",
-         //   JSON.stringify(jugador)
-       // );
+// Si ya llegó a 30 monedas
+if(jugador.monedas >= 15){
 
-        let boton = document.getElementById("btn" + nombre.charAt(0).toUpperCase() + nombre.slice(1));
+    confetti({
 
-        boton.disabled = true;
+        particleCount:250,
 
-        boton.innerHTML = "✅ Visitado";
+        spread:180,
 
-    }
+        origin:{ y:0.6 }
+
+    });
+
+    document.getElementById("medallaBronce").style.display = "flex";
+
+    document.getElementById("continuar").disabled = false;
+
+}
+
+//   localStorage.setItem(
+//     "jugador",
+//     JSON.stringify(jugador)
+// );
+
+let boton = document.getElementById("btn" + nombre.charAt(0).toUpperCase() + nombre.slice(1));
+
+boton.disabled = true;
+
+boton.innerHTML = "✅ Visitado";
+
+}
+
+function cerrarMedalla(){
+
+    document.getElementById("medallaBronce").style.display = "none";
+
+}
 
