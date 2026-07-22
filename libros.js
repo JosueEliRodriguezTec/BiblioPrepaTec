@@ -34,7 +34,7 @@
 
     sumarMonedas("libro1");
 
-    abrirLibro("https://libbyapp.com/search/bibliotecatec/spotlight-books/page-1/570224");
+    abrirLibro("index.html");
 
 }
     function libro2(){
