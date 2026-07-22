@@ -23,11 +23,13 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 
 <div class="h">
 
-<h5>Objetivo: 500 puntos</h5>
+<h5>🎯 Objetivo: 500 puntos</h5>
 
-<h5>Tiempo: <span id="time">0</span></h5>
+<h5>⏱ Tiempo: <span id="time">0</span></h5>
 
-<h5>Puntos: <span id="score">0</span></h5>
+<h5>⭐ Puntos: <span id="score">0</span></h5>
+
+<h5>🪙 Monedas: <span id="coins">0</span></h5>
 
 </div>
 
@@ -55,37 +57,77 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 
 <div class="board board1" id="board1">
 
-<div id="inicio">
+    <div id="inicio">x
 
-<h1></h1>
+        <h1></h1>
 
-<button onclick="ply()" class="str">
-Iniciar Juego
-</button>
-
-</div>
-
-<div id="final" class="finalScreen">
-
-    <div class="resultBox">
-
-        <h1 id="tituloFinal">⏰ Tiempo agotado</h1>
-
-        <p class="subtitulo">Puntuación obtenida</p>
-
-        <h1 id="finalScore">0</h1>
-
-        <h2 id="mensajeFinal"></h2>
-
-        <p class="gracias">
-            Gracias por visitar la Biblioteca
-        </p>
+        <button onclick="ply()" class="str">
+            Iniciar Juego
+        </button>
 
     </div>
 
+    <div id="introModal" class="introModal">
+
+        <div class="introBox">
+
+            <h1>🎮 Nivel 1</h1>
+
+            <h2>🪙 Recompensa</h2>
+
+            <h1 class="coins">15 Monedas</h1>
+
+            <p>
+                ¡Obtén la mayor puntuación posible!
+            </p>
+
+            <button onclick="startGame()">
+                JUGAR
+            </button>
+
+        </div>
+
+    </div>
+
+    <div id="final" class="finalScreen">
+
+        <div class="resultBox">
+
+    <h1>🎉 ¡Nivel 1 completado!</h1>
+
+    <p class="subtitulo">Puntuación obtenida</p>
+
+    <h1 id="finalScore">0</h1>
+
+    <hr>
+
+    <h2>🪙 Has obtenido</h2>
+
+    <h1 class="coinsReward">15 Monedas</h1>
+    
+
+    <p class="avance">
+        Progreso: <strong>15 / 30 Monedas</strong>
+    </p>
+
+    <p class="mensajeBronce">
+        Te faltan <strong>15 monedas</strong> para desbloquear la
+        <strong>🥉 Medalla de Bronce</strong>.
+    </p>
+
+    <button id="btnLibros" onclick="irLibros()">
+        📚 Explorar Libros
+    </button>
+    <div id="coinAnimation" class="coinAnimation">
+    🪙 +15
+</div>
+
 </div>
 
 
+        </div>
+
+    </div>
 
 </div>
 <iframe
