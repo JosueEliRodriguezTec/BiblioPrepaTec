@@ -32,25 +32,43 @@
 
     function libro1(){
 
-        window.open("https://libbyapp.com/search/bibliotecatec/spotlight-books/page-1/570224","_blank");
+         const ventana = window.open("", "_blank");
 
-        sumarMonedas("libro1");
+    sumarMonedas("libro1");
+
+    setTimeout(() => {
+
+        ventana.location.href = "https://libbyapp.com/search/bibliotecatec/spotlight-books/page-1/570224";
+
+    },1000);
 
     }
 
     function libro2(){
 
-        window.open("https://libbyapp.com/search/bibliotecatec/spotlight-books/page-1/1330376","_blank");
+        const ventana = window.open("", "_blank");
 
-        sumarMonedas("libro2");
+    sumarMonedas("libro2");
+
+    setTimeout(() => {
+
+        ventana.location.href = "https://libbyapp.com/search/bibliotecatec/spotlight-books/page-1/1330376";
+
+    },1000);
 
     }
 
     function libro3(){
 
-        window.open("https://libbyapp.com/search/bibliotecatec/spotlight-books/page-1/37561","_blank");
+      const ventana = window.open("", "_blank");
 
-        sumarMonedas("libro3");
+    sumarMonedas("libro3");
+
+    setTimeout(() => {
+
+        ventana.location.href = "https://libbyapp.com/search/bibliotecatec/spotlight-books/page-1/37561";
+
+    },1000);
 
     }
 
