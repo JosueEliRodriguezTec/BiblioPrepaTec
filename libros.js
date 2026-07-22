@@ -1,152 +1,126 @@
-    let jugador = JSON.parse(localStorage.getItem("jugador"));
+<!DOCTYPE html>
+<html lang="es">
 
-    if(!jugador){
+<head>
 
-        jugador = {
+    <meta charset="UTF-8">
 
-            puntos:0,
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-            monedas:0,
+    <title>Biblioteca Challenge - Libros</title>
 
-            nivel:1,
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 
-            librosVisitados:0,
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-            medalla:"Ninguna"
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
 
-        };
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
-    }
+    <link rel="stylesheet" href="style.css">
 
-    let visitados = {
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
-        libro1: false,
+</head>
 
-        libro2: false,
+<body>
 
-        libro3: false
+    <div class="pantallaLibros">
 
-    };
+    <h1>📚 Biblioteca Challenge</h1>
 
-    document.getElementById("coins").innerHTML = jugador.monedas;
+    <h2>Explora los libros y gana monedas</h2>
 
-   function libro1(){
+    <h3>🪙 Monedas: <span id="coins">0</span></h3>
 
-   
-        const ventana = window.open("", "_blank");
+    <div id="coinAnimation" class="coinAnimation">
+    🪙 +5
+</div>
 
-    sumarMonedas("libro2");
+    <hr>
 
-    setTimeout(() => {
+    <div class="librosGrid">
 
-    ventana.location.href = "https://libbyapp.com/search/bibliotecatec/spotlight-books/page-1/570224"
+        <div class="libro">
 
-    },1000);
+            <h2 id="nombreLibro1">📕 Libro 1</h2>
 
-}
-    function libro2(){
+            <p>Descripción del libro.</p>
 
-        const ventana = window.open("", "_blank");
+            <button id="btnLibro1" onclick="libro1()">
+                📖 Explorar libro (+5 🪙)
+            </button>
 
-    sumarMonedas("libro2");
+        </div>
 
-    setTimeout(() => {
+        <div class="libro">
 
-        ventana.location.href = "https://libbyapp.com/search/bibliotecatec/spotlight-books/page-1/1330376";
+           <h2 id="nombreLibro2">📘 Libro 2</h2>
+            <p>Descripción del libro.</p>
 
-    },1000);
+            <button id="btnLibro2" onclick="libro2()">
+                📖 Explorar libro (+5 🪙)
+            </button>
 
-    }
+        </div>
 
-    function libro3(){
+        <div class="libro">
 
-      const ventana = window.open("", "_blank");
+            <h2 id="nombreLibro3">📗 Libro 3</h2>
 
-    sumarMonedas("libro3");
+            <p>Descripción del libro.</p>
 
-    setTimeout(() => {
+            <button id="btnLibro3" onclick="libro3()">
+                📖 Explorar libro (+5 🪙)
+            </button>
 
-        ventana.location.href = "https://libbyapp.com/search/bibliotecatec/spotlight-books/page-1/37561";
+        </div>
 
-    },1000);
+    </div>
 
-    }
+    <hr>
 
-    function sumarMonedas(nombre){
+    <h2>Progreso</h2>
 
-        if(visitados[nombre]){
+    <h3 id="progreso">0 / 30 🪙</h3>
 
-            return;
+    <button id="continuar" disabled>
+        Continuar al Nivel 2
+    </button>
 
-        }
+</div>
 
-        visitados[nombre] = true;
+        <div id="medallaBronce" class="medallaModal">
 
-        jugador.monedas += 5;
+    <div class="medallaBox">
 
-        document.getElementById("coins").innerHTML = jugador.monedas;
+        <h1>🎉 ¡Felicidades!</h1>
 
-        document.getElementById("progreso").innerHTML =
-            jugador.monedas + " / 30 🪙";
+        <div class="medallaIcono">🥉</div>
 
-            const anim = document.getElementById("coinAnimation");
+        <h2>Has obtenido la</h2>
 
-anim.classList.remove("show");
+        <h1>MEDALLA DE BRONCE</h1>
 
-void anim.offsetWidth;
+        <p>
+            Has completado el reto de exploración de libros.
+        </p>
 
-anim.classList.add("show");
+        <button onclick="cerrarMedalla()">
+            Continuar
+        </button>
 
-// Si ya llegó a 30 monedas
-if(jugador.monedas >= 30){
+    </div>
 
-    confetti({
+</div>
 
-        particleCount:250,
+<script src="libros.js"></script>
 
-        spread:180,
 
-        origin:{ y:0.6 }
 
-    });
+</body>
 
-    document.getElementById("medallaBronce").style.display = "flex";
 
-    document.getElementById("continuar").disabled = false;
 
-}
-
-//   localStorage.setItem(
-//     "jugador",
-//     JSON.stringify(jugador)
-// );
-
-let boton = document.getElementById("btn" + nombre.charAt(0).toUpperCase() + nombre.slice(1));
-
-boton.disabled = true;
-
-boton.innerHTML = "✅ Visitado";
-
-}
-
-function cerrarMedalla(){
-
-    document.getElementById("medallaBronce").style.display = "none";
-
-}
-
-function abrirLibro(url){
-
-    document.getElementById("iframeLibro").src = url;
-
-    document.getElementById("visorLibro").style.display = "flex";
-
-}
-
-function cerrarLibro(){
-
-    document.getElementById("visorLibro").style.display = "none";
-
-    document.getElementById("iframeLibro").src = "";
-
-}
+</html>
