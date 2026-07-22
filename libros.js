@@ -1,126 +1,158 @@
-<!DOCTYPE html>
-<html lang="es">
+    let jugador = JSON.parse(localStorage.getItem("jugador"));
 
-<head>
+    if(!jugador){
 
-    <meta charset="UTF-8">
+        jugador = {
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            puntos:0,
 
-    <title>Biblioteca Challenge - Libros</title>
+            monedas:0,
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+            nivel:1,
 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            librosVisitados:0,
 
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+            medalla:"Ninguna"
 
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+        };
 
-    <link rel="stylesheet" href="style.css">
+    }
 
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    let visitados = {
 
-</head>
+        libro1: false,
 
-<body>
+        libro2: false,
 
-    <div class="pantallaLibros">
+        libro3: false
 
-    <h1>📚 Biblioteca Challenge</h1>
+    };
 
-    <h2>Explora los libros y gana monedas</h2>
+    let libroPendiente = null;
 
-    <h3>🪙 Monedas: <span id="coins">0</span></h3>
+    document.getElementById("coins").innerHTML = jugador.monedas;
 
-    <div id="coinAnimation" class="coinAnimation">
-    🪙 +5
-</div>
+  function libro1(){
 
-    <hr>
+    if(visitados.libro1) return;
 
-    <div class="librosGrid">
+    libroPendiente = "libro1";
 
-        <div class="libro">
+    window.open(
+        "https://libbyapp.com/search/bibliotecatec/spotlight-books/page-1/570224",
+        "_blank"
+    );
 
-            <h2 id="nombreLibro1">📕 Libro 1</h2>
+}   
+function libro2(){
 
-            <p>Descripción del libro.</p>
+    if(visitados.libro2) return;
 
-            <button id="btnLibro1" onclick="libro1()">
-                📖 Explorar libro (+5 🪙)
-            </button>
+    libroPendiente = "libro2";
 
-        </div>
+    window.open(
+        "https://libbyapp.com/search/bibliotecatec/spotlight-books/page-1/1330376",
+        "_blank"
+    );
 
-        <div class="libro">
+}
 
-           <h2 id="nombreLibro2">📘 Libro 2</h2>
-            <p>Descripción del libro.</p>
+function libro3(){
 
-            <button id="btnLibro2" onclick="libro2()">
-                📖 Explorar libro (+5 🪙)
-            </button>
+    if(visitados.libro3) return;
 
-        </div>
+    libroPendiente = "libro3";
 
-        <div class="libro">
+    window.open(
+        "https://libbyapp.com/search/bibliotecatec/spotlight-books/page-1/37561",
+        "_blank"
+    );
 
-            <h2 id="nombreLibro3">📗 Libro 3</h2>
+}
 
-            <p>Descripción del libro.</p>
+    function sumarMonedas(nombre){
 
-            <button id="btnLibro3" onclick="libro3()">
-                📖 Explorar libro (+5 🪙)
-            </button>
+        if(visitados[nombre]){
 
-        </div>
+            return;
 
-    </div>
+        }
 
-    <hr>
+        visitados[nombre] = true;
 
-    <h2>Progreso</h2>
+        jugador.monedas += 5;
 
-    <h3 id="progreso">0 / 30 🪙</h3>
+        document.getElementById("coins").innerHTML = jugador.monedas;
 
-    <button id="continuar" disabled>
-        Continuar al Nivel 2
-    </button>
+        document.getElementById("progreso").innerHTML =
+            jugador.monedas + " / 30 🪙";
 
-</div>
+            const anim = document.getElementById("coinAnimation");
 
-        <div id="medallaBronce" class="medallaModal">
+anim.classList.remove("show");
 
-    <div class="medallaBox">
+void anim.offsetWidth;
 
-        <h1>🎉 ¡Felicidades!</h1>
+anim.classList.add("show");
 
-        <div class="medallaIcono">🥉</div>
+// Si ya llegó a 30 monedas
+if(jugador.monedas >= 30){
 
-        <h2>Has obtenido la</h2>
+    confetti({
 
-        <h1>MEDALLA DE BRONCE</h1>
+        particleCount:250,
 
-        <p>
-            Has completado el reto de exploración de libros.
-        </p>
+        spread:180,
 
-        <button onclick="cerrarMedalla()">
-            Continuar
-        </button>
+        origin:{ y:0.6 }
 
-    </div>
+    });
 
-</div>
+    document.getElementById("medallaBronce").style.display = "flex";
 
-<script src="libros.js"></script>
+    document.getElementById("continuar").disabled = false;
+
+}
+
+//   localStorage.setItem(
+//     "jugador",
+//     JSON.stringify(jugador)
+// );
+
+let boton = document.getElementById("btn" + nombre.charAt(0).toUpperCase() + nombre.slice(1));
+
+boton.disabled = true;
+
+boton.innerHTML = "✅ Visitado";
+
+}
+
+function cerrarMedalla(){
+
+    document.getElementById("medallaBronce").style.display = "none";
+
+}
 
 
 
-</body>
 
 
+document.addEventListener("visibilitychange", function(){
 
-</html>
+   
+
+    if(document.visibilityState === "visible"){
+
+        if(libroPendiente){
+
+        
+
+            sumarMonedas(libroPendiente);
+
+            libroPendiente = null;
+
+        }
+
+    }
+
+});
