@@ -38,7 +38,7 @@
 
     setTimeout(() => {
 
-        ventana.location.href = "https://libbyapp.com/search/bibliotecatec/spotlight-books/page-1/570224";
+      //  ventana.location.href = "https://libbyapp.com/search/bibliotecatec/spotlight-books/page-1/570224";
 
     },1000);
 
