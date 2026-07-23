@@ -246,11 +246,11 @@ i{
 
 .coinAnimation{
 
-    position:absolute;
+    position:fixed;
 
     left:50%;
 
-    top:58%;
+    top:50%;
 
     font-size:70px;
 
@@ -395,11 +395,12 @@ i{
 
 #continuar{
 
-    margin-top:15px;
+    margin-top:5px;
 
     padding:15px 30px;
 
     font-size:18px;
+
 
 }
 
@@ -415,63 +416,7 @@ i{
 
 }
 
-.coinAnimation{
 
-    position: fixed;
-
-    top: 120px;
-
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    font-size: 42px;
-
-    font-weight: bold;
-
-    color: #ffbf00;
-
-    text-shadow: 0 0 10px gold;
-
-    opacity: 0;
-
-    pointer-events: none;
-
-    z-index: 9999;
-
-}
-
-.coinAnimation.show{
-
-    animation: ganarMonedas 1.2s ease forwards;
-
-}
-
-@keyframes ganarMonedas{
-
-    0%{
-
-        opacity:0;
-
-        transform:translate(-50%,30px) scale(.7);
-
-    }
-
-    25%{
-
-        opacity:1;
-
-    }
-
-    100%{
-
-        opacity:0;
-
-        transform:translate(-50%,-70px) scale(1.3);
-
-    }
-
-}
 
 @media (max-width: 768px){
 
