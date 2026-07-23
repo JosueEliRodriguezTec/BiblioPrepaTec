@@ -161,3 +161,7 @@ document.addEventListener("visibilitychange", function(){
     }
 
 });
+
+document.getElementById("continuar").addEventListener("click", function() {
+    window.location.href = "transicion.html";
+});
