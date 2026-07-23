@@ -84,8 +84,8 @@ function libro3(){
 
         document.getElementById("coins").innerHTML = jugador.monedas;
 
-        document.getElementById("progreso").innerHTML =
-            jugador.monedas + " / 30 🪙";
+        //document.getElementById("progreso").innerHTML =
+        //    jugador.monedas + " / 30 🪙";
 
             const anim = document.getElementById("coinAnimation");
 
