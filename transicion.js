@@ -16,4 +16,4 @@ const carga = setInterval(function(){
 
     }
 
-},50);
+},100);
