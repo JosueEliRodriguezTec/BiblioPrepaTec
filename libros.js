@@ -71,6 +71,7 @@ function libro3(){
 }
 
     function sumarMonedas(nombre){
+        console.log("Entró a sumarMonedas:", nombre);
 
         if(visitados[nombre]){
 
@@ -119,7 +120,11 @@ if(jugador.monedas >= 30){
 //     JSON.stringify(jugador)
 // );
 
+console.log("Va a cambiar el botón");
+
 let boton = document.getElementById("btn" + nombre.charAt(0).toUpperCase() + nombre.slice(1));
+
+console.log(boton);
 
 boton.disabled = true;
 
