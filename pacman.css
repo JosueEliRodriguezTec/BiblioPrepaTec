@@ -1,0 +1,276 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#0d1b2a;
+    color:white;
+    font-family:Arial, Helvetica, sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+#contenedor{
+    width:95%;
+    max-width:900px;
+    text-align:center;
+}
+
+h1{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+h2{
+    margin-bottom:25px;
+    color:#ffd54f;
+}
+
+#hud{
+    display:flex;
+    justify-content:space-around;
+    background:#1b263b;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:20px;
+    font-size:22px;
+}
+
+#laberinto{
+
+    width:100%;
+    height:600px;
+
+    display:grid;
+
+    border:5px solid #2196f3;
+    border-radius:15px;
+
+    overflow:hidden;
+
+    background:black;
+
+}
+
+#controles{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:15px;
+}
+
+#controles div{
+    display:flex;
+    gap:20px;
+}
+
+#controles button{
+    width:80px;
+    height:80px;
+    font-size:35px;
+    border:none;
+    border-radius:15px;
+    cursor:pointer;
+    background:#1976d2;
+    color:white;
+}
+
+#controles button:hover{
+    background:#1565c0;
+}
+
+#modalLibro{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.8);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+}
+
+#ventanaLibro{
+    width:90%;
+    height:90%;
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+}
+
+#iframeLibro{
+    flex:1;
+    border:none;
+}
+
+#ventanaLibro button{
+    padding:18px;
+    font-size:20px;
+    border:none;
+    background:#1976d2;
+    color:white;
+    cursor:pointer;
+}
+
+.casilla{
+    width:100%;
+    height:100%;
+    background:transparent;
+}
+
+.muro{
+    background:#1d4ed8;
+    border:1px solid #2563eb;
+    border-radius:4px;
+}
+
+.camino{
+    background:#050505;
+}
+
+.pacman{
+
+    width:100%;
+    height:100%;
+
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size:70% 70%;
+
+}
+
+@keyframes comer{
+    from{
+        background-position:0 0;
+    }
+
+    to{
+        background-position:100% 0;
+    }
+}
+.derecha{
+    transform:rotate(0deg);
+}
+
+.abajo{
+    transform:rotate(90deg);
+}
+
+.izquierda{
+    transform:rotate(180deg);
+}
+
+.arriba{
+    transform:rotate(270deg);
+}
+
+.puntito{
+
+    background: black;
+    position: relative;
+
+}
+
+.puntito::after{
+
+    content: "";
+
+    width: 12px;
+height: 12px;
+
+    background: #ffd54f;
+    border-radius: 50%;
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%,-50%);
+
+}
+
+.libro{
+
+    background: black;
+    position: relative;
+
+}
+
+.libro::after{
+
+    content: "";
+
+    width: 20px;
+    height: 20px;
+
+    background: #ffd54f;
+    border-radius: 50%;
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%,-50%);
+
+}
+
+#mensajeMonedas{
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    display: none;
+
+    z-index: 9999;
+
+    background: gold;
+
+    color: white;
+
+    font-size: 40px;
+
+    padding: 20px 40px;
+
+    border-radius: 20px;
+}
+
+@keyframes aparecer{
+
+    0%{
+
+        opacity:0;
+
+        transform:translate(-50%,-30%) scale(.5);
+
+    }
+
+    30%{
+
+        opacity:1;
+
+        transform:translate(-50%,-50%) scale(1.3);
+
+    }
+
+    100%{
+
+        opacity:0;
+
+        transform:translate(-50%,-80%) scale(1);
+
+    }
+
+}
