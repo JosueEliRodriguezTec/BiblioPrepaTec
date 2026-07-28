@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Challenge - Nivel 2</title>
+
+    <link rel="stylesheet" href="pacman.css">
+</head>
+
+<body>
+
+    <div id="contenedor">
+
+        <h1>Biblioteca Challenge</h1>
+        <h2>Nivel 2 - Pac-Man</h2>
+
+        <div id="hud">
+
+            <div>
+                🪙 Monedas:
+                <span id="monedas">30</span>
+            </div>
+
+            <div>
+                ❤️ Vidas:
+                <span id="vidas">3</span>
+            </div>
+
+            <div>
+                ⏱️ Tiempo:
+                <span id="tiempo">60</span>
+            </div>
+
+        </div>
+
+        <div id="laberinto">
+
+            <!-- Aquí irá el mapa del juego -->
+
+        </div>
+
+        <div id="controles">
+
+            <button id="arriba">⬆️</button>
+
+            <div>
+                <button id="izquierda">⬅️</button>
+                <button id="derecha">➡️</button>
+            </div>
+
+            <button id="abajo">⬇️</button>
+
+        </div>
+
+    </div>
+
+    <!-- Modal del libro -->
+
+    <div id="modalLibro">
+
+        <div id="ventanaLibro">
+
+            <iframe id="iframeLibro"></iframe>
+
+            <button onclick="cerrarLibro()">
+                Continuar jugando
+            </button>
+
+        </div>
+
+    </div>
+
+    <div id="mensajeMonedas">
+    +10 🪙
+</div>
+
+    <script src="pacman.js"></script>
+
+</body>
+
+</html>
