@@ -12,7 +12,7 @@ const carga = setInterval(function(){
 
         clearInterval(carga);
 
-        window.location.href = "pacman.html";
+        window.location.href = "pac-man.html";
 
     }
 
