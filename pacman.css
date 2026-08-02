@@ -447,17 +447,7 @@ height: 12px;
     }
 
 }
-@media (max-width:768px){
 
-    h1,
-    h2,
-    #hud{
-
-        display:none;
-
-    }
-
-}
 @media (max-width:768px){
 
     h1,
@@ -469,13 +459,17 @@ height: 12px;
 
     #hud{
 
-        width:95%;
+    width:95%;
 
-        font-size:18px;
+    display:flex;
 
-        margin-bottom:10px;
+    justify-content:space-between;
 
-    }
+    font-size:16px;
+
+    padding:8px 12px;
+
+}
 
     #laberinto{
 
@@ -561,5 +555,31 @@ body{
         font-size:18px;
 
     }
+
+}
+
+#contadorMovil{
+
+    position:fixed;
+
+    top:10px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    background:rgba(0,0,0,.75);
+
+    color:#ffd54f;
+
+    padding:8px 18px;
+
+    border-radius:30px;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    z-index:9999;
 
 }
