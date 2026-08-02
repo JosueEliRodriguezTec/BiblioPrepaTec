@@ -10,16 +10,28 @@ body{
     font-family:Arial, Helvetica, sans-serif;
     display:flex;
     justify-content:center;
-    align-items:flex-start;
     min-height:100vh;
-    padding-top:10px;
+    padding-top:100px;
+    margin:0;
+    overflow:hidden;
+
+    align-items:center;
+
+
 
 }
 
 #contenedor{
-    width:95%;
-    max-width:900px;
-    text-align:center;
+
+    width:100%;
+    height:100%;
+
+    display:flex;
+    flex-direction:column;
+
+    align-items:center;
+    justify-content:flex-start;
+
 }
 
 h1{
@@ -48,8 +60,11 @@ h2{
 
 #laberinto{
 
-    width:100%;
-    height:600px;
+     width:min(92vw,92vh);
+    height:min(92vw,92vh);
+
+    max-width:700px;
+    max-height:700px;
 
     display:grid;
 
@@ -63,15 +78,30 @@ h2{
 }
 
 #controles{
+     width:100%;
+
     display:flex;
+
     flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin-top:10px;
     
     gap:8px;
 }
 
 #controles div{
     display:flex;
-    gap:12px;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:20px;
+
 }
 
 #controles button{
@@ -420,6 +450,48 @@ height: 12px;
     #hud{
 
         display:none;
+
+    }
+
+}
+@media (max-width:768px){
+
+    h1,
+    h2{
+
+        display:none;
+
+    }
+
+    #hud{
+
+        width:95%;
+
+        font-size:18px;
+
+        margin-bottom:10px;
+
+    }
+
+    #laberinto{
+
+        width:95vw;
+        height:95vw;
+
+    }
+
+    #controles{
+
+        margin-top:8px;
+
+    }
+
+    #controles button{
+
+        width:70px;
+        height:70px;
+
+        font-size:32px;
 
     }
 
