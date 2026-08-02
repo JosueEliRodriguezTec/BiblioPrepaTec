@@ -339,13 +339,14 @@ height: 12px;
 
     border-radius:25px;
 
-    padding:35px;
+    padding:25px;
 
     text-align:center;
 
     animation:aparece .5s ease;
 
-        color:#222;
+            color:#333;
+
 
 
 }
@@ -513,22 +514,52 @@ body{
 
 .medallaBox h1{
 
+       margin:10px 0;
+
     color:#1976d2;
+
+    font-size:36px;
 
 }
 
 .medallaBox h2{
 
-    color:#444;
+    margin:10px 0;
+
+    color:#555;
+
+    font-size:26px;
 
 }
 
 .medallaBox p{
 
-    color:#555;
+     margin-top:15px;
 
     font-size:22px;
 
-    margin-top:15px;
+    color:#555;
+
+}
+
+@media (max-width:768px){
+
+    .medallaBox h1{
+
+        font-size:28px;
+
+    }
+
+    .medallaBox h2{
+
+        font-size:22px;
+
+    }
+
+    .medallaBox p{
+
+        font-size:18px;
+
+    }
 
 }
