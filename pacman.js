@@ -135,6 +135,7 @@ function verificarVictoria(){
 
     document.getElementById("medallaPlata").style.display = "flex";
 
+    document.getElementById("totalMonedas").textContent = monedas;
     confetti({
 
         particleCount:250,
