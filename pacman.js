@@ -79,6 +79,10 @@ function cerrarLibro(){
 
 function actualizarHUD(){
 
+    document.getElementById("monedas").textContent = monedas;
+
+    document.getElementById("monedasMovil").textContent = monedas;
+
     const marcador = document.getElementById("monedas");
 
     if(marcador){
