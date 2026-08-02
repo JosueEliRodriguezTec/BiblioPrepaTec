@@ -8,6 +8,11 @@ const modal = document.getElementById("modalLibro");
 const iframe = document.getElementById("iframeLibro");
 let direccion = "derecha";
 let cuadro = 0;
+function continuarNivel3(){
+
+    window.location.href = "nivel3.html";
+
+}
 const animaciones = {
 
     izquierda:["pacman1.png","pacman2.png","pacman3.png"],
@@ -90,11 +95,11 @@ function mostrarMonedas(){
 
 function verificarVictoria(){
 
-    for(let fila = 0; fila < mapa.length; fila++){
+    for(let fila=0; fila<mapa.length; fila++){
 
-        for(let columna = 0; columna < mapa[fila].length; columna++){
+        for(let columna=0; columna<mapa[fila].length; columna++){
 
-            if(mapa[fila][columna] === 5 || mapa[fila][columna] === 3){
+            if(mapa[fila][columna]===5 || mapa[fila][columna]===3){
                 return;
             }
 
@@ -107,6 +112,24 @@ function verificarVictoria(){
     mostrarVictoria();
 
 }
+
+   function mostrarVictoria(){
+
+    document.getElementById("medallaPlata").style.display = "flex";
+
+    confetti({
+
+        particleCount:250,
+
+        spread:180,
+
+        origin:{ y:0.6 }
+
+    });
+
+}
+
+
 
 let libros = [
     {
