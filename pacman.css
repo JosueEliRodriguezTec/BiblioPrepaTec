@@ -379,8 +379,8 @@ height: 12px;
 
     #controles button{
 
-        width:55px;
-        height:55px;
+        width:65px;
+        height:65px;
         font-size:28px;
 
     }
@@ -398,6 +398,28 @@ height: 12px;
     #controles div{
 
         gap:8px;
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    #laberinto{
+
+        width:95vw;
+        height:95vw;
+
+    }
+
+}
+@media (max-width:768px){
+
+    h1,
+    h2,
+    #hud{
+
+        display:none;
 
     }
 
