@@ -345,6 +345,9 @@ height: 12px;
 
     animation:aparece .5s ease;
 
+        color:#222;
+
+
 }
 
 .medallaIcono{
@@ -494,5 +497,38 @@ height: 12px;
         font-size:32px;
 
     }
+
+}
+html,
+body{
+
+    touch-action: manipulation;
+
+    overscroll-behavior: none;
+
+    -webkit-user-select: none;
+    user-select: none;
+
+}
+
+.medallaBox h1{
+
+    color:#1976d2;
+
+}
+
+.medallaBox h2{
+
+    color:#444;
+
+}
+
+.medallaBox p{
+
+    color:#555;
+
+    font-size:22px;
+
+    margin-top:15px;
 
 }
