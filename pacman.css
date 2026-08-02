@@ -10,8 +10,10 @@ body{
     font-family:Arial, Helvetica, sans-serif;
     display:flex;
     justify-content:center;
-    align-items:center;
+    align-items:flex-start;
     min-height:100vh;
+    padding-top:10px;
+
 }
 
 #contenedor{
@@ -21,23 +23,27 @@ body{
 }
 
 h1{
-    font-size:40px;
-    margin-bottom:10px;
+
+    font-size:28px;
+    margin-bottom:4px;
+
 }
 
 h2{
-    margin-bottom:25px;
-    color:#ffd54f;
+
+    font-size:18px;
+    margin-bottom:10px;
+
 }
 
 #hud{
     display:flex;
     justify-content:space-around;
     background:#1b263b;
-    padding:15px;
+    padding:8px;
     border-radius:10px;
-    margin-bottom:20px;
-    font-size:22px;
+    margin-bottom:10px;
+    font: size 16px;
 }
 
 #laberinto{
@@ -59,19 +65,19 @@ h2{
 #controles{
     display:flex;
     flex-direction:column;
-    align-items:center;
-    gap:15px;
+    
+    gap:8px;
 }
 
 #controles div{
     display:flex;
-    gap:20px;
+    gap:12px;
 }
 
 #controles button{
-    width:80px;
-    height:80px;
-    font-size:35px;
+    width:60px;
+    height:60px;
+    font-size:28px;
     border:none;
     border-radius:15px;
     cursor:pointer;
@@ -270,6 +276,128 @@ height: 12px;
         opacity:0;
 
         transform:translate(-50%,-80%) scale(1);
+
+    }
+
+}
+
+.medallaModal{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.75);
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:99999;
+
+}
+
+.medallaBox{
+
+    width:90%;
+
+    max-width:500px;
+
+    background:white;
+
+    border-radius:25px;
+
+    padding:35px;
+
+    text-align:center;
+
+    animation:aparece .5s ease;
+
+}
+
+.medallaIcono{
+
+    font-size:120px;
+
+    margin:20px 0;
+
+}
+
+.medallaBox button{
+
+    margin-top:25px;
+
+    padding:15px 40px;
+
+    font-size:20px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:#1976d2;
+
+    color:white;
+
+    cursor:pointer;
+
+}
+
+@keyframes aparece{
+
+    from{
+
+        transform:scale(.5);
+
+        opacity:0;
+
+    }
+
+    to{
+
+        transform:scale(1);
+
+        opacity:1;
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    #laberinto{
+
+        height:72vh;
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    #controles button{
+
+        width:55px;
+        height:55px;
+        font-size:28px;
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    #controles{
+
+        gap:5px;
+
+    }
+
+    #controles div{
+
+        gap:8px;
 
     }
 
