@@ -28,7 +28,7 @@ let direccion = "derecha";
 let cuadro = 0;
 function continuarNivel3(){
 
-    window.location.href = "nivel3.html";
+    window.location.href = "transicion2.html";
 
 }
 const animaciones = {
