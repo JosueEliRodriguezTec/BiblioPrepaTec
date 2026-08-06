@@ -38,7 +38,7 @@
 
     libroPendiente = "libro1";
 
-    window.open(
+    abrirLibro(
         "https://libbyapp.com/search/bibliotecatec/spotlight-books/page-1/570224",
         "_blank"
     );
@@ -50,7 +50,7 @@ function libro2(){
 
     libroPendiente = "libro2";
 
-    window.open(
+    abrirLibro(
         "https://libbyapp.com/search/bibliotecatec/spotlight-books/page-1/1330376",
         "_blank"
     );
@@ -63,10 +63,34 @@ function libro3(){
 
     libroPendiente = "libro3";
 
-    window.open(
+    abrirLibro(
         "https://libbyapp.com/search/bibliotecatec/spotlight-books/page-1/37561",
         "_blank"
     );
+
+}
+
+function abrirLibro(url){
+
+    document.getElementById("iframeLibro").src = url;
+
+    document.getElementById("modalLibro").style.display = "flex";
+
+}
+
+function cerrarLibro(){
+
+    document.getElementById("modalLibro").style.display = "none";
+
+    document.getElementById("iframeLibro").src = "";
+
+    if(libroPendiente){
+
+        sumarMonedas(libroPendiente);
+
+        libroPendiente = null;
+
+    }
 
 }
 
@@ -142,25 +166,25 @@ function cerrarMedalla(){
 
 
 
-document.addEventListener("visibilitychange", function(){
+//document.addEventListener("visibilitychange", function(){
 
    
 
-    if(document.visibilityState === "visible"){
+    //if(document.visibilityState === "visible"){
 
-        if(libroPendiente){
+        //if(libroPendiente){
 
         
 
-            sumarMonedas(libroPendiente);
+        //    sumarMonedas(libroPendiente);
 
-            libroPendiente = null;
+      //      libroPendiente = null;
 
-        }
+    //    }
 
-    }
+  //  }
 
-});
+//});
 
 document.getElementById("continuar").addEventListener("click", function() {
     window.location.href = "transicion.html";
