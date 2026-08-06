@@ -1,135 +1,441 @@
-<!DOCTYPE html>
-<html lang="es">
+document.addEventListener("gesturestart", function(e){
 
-<head>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-content="width=device-width, initial-scale=1.0,
-maximum-scale=1.0,
-user-scalable=no">
-    <title>Biblioteca Challenge - Nivel 2</title>
+    e.preventDefault();
 
-    <link rel="stylesheet" href="pacman.css">
-</head>
+});
 
-<body>
+document.addEventListener("gesturechange", function(e){
 
-    <div id="contenedor">
+    e.preventDefault();
 
-        <h1>Biblioteca Challenge</h1>
-        <h2>Nivel 2 - Pac-Man</h2>
+});
 
-        <div id="hud">
+document.addEventListener("gestureend", function(e){
 
-            <div>
-                🪙 Monedas:
-                <span id="monedas">30</span>
-            </div>
+    e.preventDefault();
 
-            <div>
-                ❤️ Vidas:
-                <span id="vidas">3</span>
-            </div>
+});
 
-            <div>
-                ⏱️ Tiempo:
-                <span id="tiempo">60</span>
-            </div>
+let monedas = 30;
+let vidas = 3;
+let tiempo = 60;
 
-        </div>
+let juegoPausado = false;
 
-        <div id="laberinto">
+const modal = document.getElementById("modalLibro");
+const iframe = document.getElementById("iframeLibro");
+let direccion = "derecha";
+let cuadro = 0;
+function continuarNivel3(){
 
-            <!-- Aquí irá el mapa del juego -->
+    window.location.href = "transicion2.html";
 
-        </div>
+}
+const animaciones = {
 
-        <div id="controles">
+    izquierda:["pacman1.png","pacman2.png","pacman3.png"],
 
-            <button id="arriba">⬆️</button>
+    arriba:["pacman1.png","pacman4.png","pacman5.png"],
 
-            <div>
-                <button id="izquierda">⬅️</button>
-                <button id="derecha">➡️</button>
-            </div>
+    derecha:["pacman1.png","pacman6.png","pacman7.png"],
 
-            <button id="abajo">⬇️</button>
+    abajo:["pacman1.png","pacman8.png","pacman9.png"]
 
-        </div>
+};
 
-    </div>
+let pacmanFila = 5;
+let pacmanColumna = 7;
 
-    <!-- Modal del libro -->
+let movimientoX = 0;
+let movimientoY = 0;
 
-   <!-- Modal del libro -->
-<div id="modalLibro">
+function abrirLibro(urlLibro){
 
-    <div id="ventanaLibro">
+    juegoPausado = true;
 
-        <iframe id="iframeLibro"></iframe>
+    iframe.src = urlLibro;
 
-        <button onclick="cerrarLibro()">
-            Continuar jugando
-        </button>
+    modal.style.display = "flex";
 
-    </div>
+    setTimeout(() => {
 
-</div>
+        cerrarLibro();
+
+    }, 7000);
+
+}
+
+function cerrarLibro(){
+
+    modal.style.display = "none";
+
+    iframe.src = "";
+
+    juegoPausado = false;
+
+   
+
+}
+
+function actualizarHUD(){
+
+    document.getElementById("monedas").textContent = monedas;
+
+    document.getElementById("monedasMovil").textContent = monedas;
+
+    const marcador = document.getElementById("monedas");
+
+    if(marcador){
+        marcador.textContent = monedas;
+    }
+
+}
+
+function mostrarMonedas(){
+
+    const mensaje = document.getElementById("mensajeMonedas");
+
+    mensaje.innerHTML = "+10 🪙";
+
+    mensaje.style.display = "block";
+
+    mensaje.style.background = "red";
+
+    mensaje.style.color = "yellow";
+
+    mensaje.style.fontSize = "80px";
+
+    console.log("MOSTRANDO MENSAJE");
+
+    setTimeout(()=>{
+
+        mensaje.style.display = "none";
+
+    },3000);
+
+}
+
+function verificarVictoria(){
+
+    for(let fila=0; fila<mapa.length; fila++){
+
+        for(let columna=0; columna<mapa[fila].length; columna++){
+
+            if(mapa[fila][columna]===5 || mapa[fila][columna]===3){
+                return;
+            }
+
+        }
+
+    }
+
+    juegoPausado = true;
+
+    mostrarVictoria();
+
+}
+
+   function mostrarVictoria(){
+
+    document.getElementById("medallaPlata").style.display = "flex";
+
+    document.getElementById("totalMonedas").textContent = monedas;
+    confetti({
+
+        particleCount:250,
+
+        spread:180,
+
+        origin:{ y:0.6 }
+
+    });
+
+}
 
 
-<!-- Medalla de Plata -->
-<div id="medallaPlata" class="medallaModal">
 
-    <div class="medallaBox">
+let libros = [
+    {
+        id: 1,
+        url: "https://libbyapp.com/search/bibliotecatec/spotlight-books/page-1/5305833",
+        leido: false
+    },
+    {
+        id: 2,
+        url: "https://libbyapp.com/search/bibliotecatec/spotlight-books/page-1/3466096",
+        leido: false
+    },
+    {
+        id: 3,
+        url: "https://libbyapp.com/search/bibliotecatec/spotlight-books/page-1/5485309",
+        leido: false
+    },
+    {
+        id: 4,
+        url: "https://libbyapp.com/search/bibliotecatec/spotlight-books/page-1/5807900",
+        leido: false
+    }
+];
 
-    <h1>🎉 ¡Felicidades!</h1>
+actualizarHUD();
 
-    <div class="medallaIcono">
-        🥈
-    </div>
+const mapa = [
 
-    <h2>MEDALLA DE PLATA</h2>
+[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 
-    <h3>🪙 Monedas conseguidas</h3>
+[1,3,5,5,5,5,5,1,5,5,5,5,5,3,1],
 
-    <h1 id="totalMonedas">30</h1>
+[1,5,1,1,1,5,5,1,5,1,1,1,5,5,1],
 
-    <p>
+[1,5,1,5,5,5,5,5,5,5,5,1,5,5,1],
 
-        Has completado el Nivel 2.
+[1,5,1,5,1,1,1,1,1,1,5,1,5,1,1],
 
-        <br><br>
+[1,5,5,5,5,5,5,2,5,5,5,5,5,5,1],
 
-        Exploraste todos los libros y limpiaste completamente el laberinto de Pac-Man.
+[1,1,1,1,1,5,1,1,1,5,1,1,1,5,1],
 
-        <br><br>
+[1,5,5,5,1,5,5,5,5,5,1,5,5,5,1],
 
-        ¡Ya puedes continuar al Nivel 3!
+[1,3,5,5,5,5,1,1,5,5,5,5,5,3,1],
 
-    </p>
+[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 
-    <button onclick="continuarNivel3()">
+];
+function dibujarMapa(){
 
-        Continuar
+    const laberinto = document.getElementById("laberinto");
 
-    </button>
+    laberinto.innerHTML = "";
 
-</div>
+    laberinto.style.gridTemplateColumns = `repeat(${mapa[0].length}, 1fr)`;
+    laberinto.style.gridTemplateRows = `repeat(${mapa.length}, 1fr)`;
 
-</div>
+  for(let fila = 0; fila < mapa.length; fila++){
+
+    for(let columna = 0; columna < mapa[fila].length; columna++){
+
+        const casilla = document.createElement("div");
+
+        casilla.classList.add("casilla");
+
+        const valor = mapa[fila][columna];
+
+        if(valor === 1){
+
+            casilla.classList.add("muro");
+
+        }
+        else if(valor===2){
+
+            casilla.classList.add("pacman");
+
+            casilla.style.backgroundImage =
+                `url("${animaciones[direccion][cuadro]}")`;
+
+        }
+        else if(valor===3){
+
+        casilla.classList.add("libro");
 
 
-<div id="mensajeMonedas">
-    +10 🪙
-</div>
+        }
+        else if(valor===4){
 
-<div id="contadorMovil">
-    🪙 <span id="monedasMovil">30</span>
-</div>
+            casilla.classList.add("fantasma");
 
-<script src="pacman.js"></script>
+        }
+        else if(valor===5){
 
-</body>
+            casilla.classList.add("puntito");
 
-</html>
+        }
+        else{
+
+            casilla.classList.add("camino");
+
+        }
+
+        laberinto.appendChild(casilla);
+
+    }
+
+}
+}
+
+setInterval(()=>{
+
+    cuadro++;
+
+    if(cuadro>=3){
+        cuadro=0;
+    }
+
+    const pacman = document.querySelector(".pacman");
+
+    if(pacman){
+        pacman.style.backgroundImage =
+            `url("${animaciones[direccion][cuadro]}")`;
+    }
+
+},100);
+
+setInterval(()=>{
+
+    moverPacman(movimientoY,movimientoX);
+
+},120);
+
+document.addEventListener("keydown", function(e){
+
+ if(e.key=="ArrowRight"){
+
+    direccion="derecha";
+
+    movimientoX = 1;
+    movimientoY = 0;
+
+}
+
+if(e.key=="ArrowLeft"){
+    direccion="izquierda";
+    movimientoX = -1;
+    movimientoY = 0;
+}
+
+   if(e.key=="ArrowUp"){
+    direccion="arriba";
+    movimientoX = 0;
+    movimientoY = -1;
+}
+
+  if(e.key=="ArrowDown"){
+    direccion="abajo";
+    movimientoX = 0;
+    movimientoY = 1;
+}
+
+});
+
+// Controles táctiles
+
+document.getElementById("arriba").addEventListener("click", function(){
+
+    direccion = "arriba";
+
+    movimientoX = 0;
+    movimientoY = -1;
+
+});
+
+document.getElementById("abajo").addEventListener("click", function(){
+
+    direccion = "abajo";
+
+    movimientoX = 0;
+    movimientoY = 1;
+
+});
+
+document.getElementById("izquierda").addEventListener("click", function(){
+
+    direccion = "izquierda";
+
+    movimientoX = -1;
+    movimientoY = 0;
+
+});
+
+document.getElementById("derecha").addEventListener("click", function(){
+
+    direccion = "derecha";
+
+    movimientoX = 1;
+    movimientoY = 0;
+
+});
+
+dibujarMapa();
+function moverPacman(df,dc){
+    if(juegoPausado){
+    return;
+}
+
+ let nuevaFila = pacmanFila + df;
+let nuevaColumna = pacmanColumna + dc;
+
+// ¿Es muro o está fuera del mapa?
+if(
+    nuevaFila < 0 ||
+    nuevaFila >= mapa.length ||
+    nuevaColumna < 0 ||
+    nuevaColumna >= mapa[0].length ||
+    mapa[nuevaFila][nuevaColumna] == 1
+){
+    return;
+}
+
+const valor = mapa[nuevaFila][nuevaColumna];
+
+if(valor === 5){
+
+    mapa[nuevaFila][nuevaColumna] = 0;
+
+}
+
+if(valor === 3){
+
+    mapa[nuevaFila][nuevaColumna] = 0;
+
+    monedas += 10;
+
+    actualizarHUD();
+
+    mostrarMonedas();
+
+    abrirLibro(libros[0].url);
+
+}
+
+    // borrar posición anterior
+    mapa[pacmanFila][pacmanColumna] = 0;
+
+    // guardar nueva posición
+    pacmanFila = nuevaFila;
+    pacmanColumna = nuevaColumna;
+
+    // dibujar pacman
+    mapa[pacmanFila][pacmanColumna] = 2;
+
+    dibujarMapa();
+verificarVictoria();
+}
+
+
+document.addEventListener("gesturestart", function(e){
+
+    e.preventDefault();
+
+});
+
+document.addEventListener("dblclick", function(e){
+
+    e.preventDefault();
+
+});
+
+let ultimoToque = 0;
+
+document.addEventListener("touchend", function(e){
+
+    let ahora = Date.now();
+
+    if(ahora - ultimoToque <= 300){
+
+        e.preventDefault();
+
+    }
+
+    ultimoToque = ahora;
+
+}, { passive:false });
