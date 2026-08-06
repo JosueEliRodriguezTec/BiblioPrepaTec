@@ -1,5 +1,27 @@
+*{
 
+    -webkit-touch-callout: none;
+
+    -webkit-user-select: none;
+
+    -khtml-user-select: none;
+
+    -moz-user-select: none;
+
+    -ms-user-select: none;
+
+    user-select: none;
+
+}
+    
+    
     body {
+
+        -webkit-user-select:none;
+
+    user-select:none;
+
+    -webkit-touch-callout:none;
         height: 100vh;
         display: flex;
         justify-content: center;
@@ -43,6 +65,13 @@ touch-action: none;
         object-fit: cover;
         cursor: crosshair;
         width: 50px;
+        -webkit-user-drag:none;
+
+    user-select:none;
+
+    -webkit-user-select:none;
+
+    -webkit-touch-callout:none;
     }
 
     .flow {
@@ -70,6 +99,13 @@ touch-action: none;
         background-image: url("img/Portada.png");
         background-color: rgb(94, 46, 236);
         z-index: 3;
+
+        -webkit-user-select:none;
+
+    user-select:none;
+
+    -webkit-touch-callout:none;
+
 
     }
     .str{
@@ -238,7 +274,7 @@ i{
 
     border-radius:20px;
 
-    padding:30px;
+    padding:28px;
 
     text-align:center;
 
@@ -575,3 +611,137 @@ i{
 }
 
 
+/*==========================
+      MODAL LIBRO
+==========================*/
+
+#modalLibro{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.75);
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:99999;
+
+}
+
+#ventanaLibro{
+
+    width:90%;
+
+    height:90%;
+
+    background:white;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+#iframeLibro{
+
+    flex:1;
+
+    border:none;
+
+}
+
+#ventanaLibro button{
+
+    padding:16px;
+
+    border:none;
+
+    background:#ff5b8c;
+
+    color:white;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+}
+
+.introBox button{
+
+    margin-top:25px;
+
+    width:80%;
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:#2f56d6;
+
+    color:white;
+
+    font-size:24px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.25);
+
+}
+
+.introBox button:hover{
+
+    transform:scale(1.03);
+
+}
+
+.introBox button:active{
+
+    transform:scale(.97);
+
+}
+
+html,
+body{
+
+    -webkit-touch-callout:none;
+
+    -webkit-user-select:none;
+
+    user-select:none;
+
+    touch-action:none;
+
+}
+
+.h0{
+
+    display:none;
+
+}
+
+#rel{
+
+    display:none;
+
+}
+
+#mut{
+
+    display:none;
+
+}
