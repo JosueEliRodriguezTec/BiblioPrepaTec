@@ -412,3 +412,30 @@ verificarVictoria();
 }
 
 
+document.addEventListener("gesturestart", function(e){
+
+    e.preventDefault();
+
+});
+
+document.addEventListener("dblclick", function(e){
+
+    e.preventDefault();
+
+});
+
+let ultimoToque = 0;
+
+document.addEventListener("touchend", function(e){
+
+    let ahora = Date.now();
+
+    if(ahora - ultimoToque <= 300){
+
+        e.preventDefault();
+
+    }
+
+    ultimoToque = ahora;
+
+}, { passive:false });
