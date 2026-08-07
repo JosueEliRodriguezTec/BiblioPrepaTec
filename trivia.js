@@ -110,14 +110,32 @@ const botones = [
 
 ];  
 
+   function mezclarOpciones(pregunta){
+
+    let opciones = pregunta.opciones.map((texto, indice) => ({
+        texto: texto,
+        correcta: indice === pregunta.correcta
+    }));
+
+    opciones.sort(() => Math.random() - 0.5);
+
+    pregunta.opciones = opciones.map(o => o.texto);
+
+    pregunta.correcta = opciones.findIndex(o => o.correcta);
+
+}
+
 function mostrarPregunta(){
 
     let p = preguntasJuego[preguntaActual];
+    mezclarOpciones(p);
 
     lblNumero.innerHTML =
         "Pregunta " + (preguntaActual+1) + " de 4";
 
     lblPregunta.innerHTML = p.pregunta;
+
+
 
     // Ajustar el tamaño según la longitud de la pregunta
     if(p.pregunta.length > 55){
@@ -247,6 +265,8 @@ function cerrarLibro(){
             b.classList.remove("incorrecta");
 
         });
+
+     
 
         mostrarPregunta();
 
