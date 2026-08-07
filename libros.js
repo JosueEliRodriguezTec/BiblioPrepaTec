@@ -135,10 +135,13 @@ if(jugador.monedas >= 30){
 
     document.getElementById("medallaBronce").style.display = "flex";
 
-    document.getElementById("continuar").disabled = false;
+    const botonContinuar = document.getElementById("continuar");
+
+    botonContinuar.disabled = false;
+
+    botonContinuar.innerHTML = "Continuar al Nivel 2";
 
 }
-
 //   localStorage.setItem(
 //     "jugador",
 //     JSON.stringify(jugador)
