@@ -330,3 +330,18 @@ function finalizarJuego(){
 
 }
 
+let ultimoToque = 0;
+
+document.addEventListener("touchend", function(e){
+
+    const ahora = Date.now();
+
+    if(ahora - ultimoToque <= 300){
+
+        e.preventDefault();
+
+    }
+
+    ultimoToque = ahora;
+
+}, { passive:false });
