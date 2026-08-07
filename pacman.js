@@ -1,4 +1,4 @@
-document.addEventListener("gesturestart", function(e){
+/*document.addEventListener("gesturestart", function(e){
 
     e.preventDefault();
 
@@ -14,7 +14,7 @@ document.addEventListener("gestureend", function(e){
 
     e.preventDefault();
 
-});
+});*/
 
 let monedas = 30;
 let vidas = 3;
@@ -411,7 +411,7 @@ verificarVictoria();
 }
 
 
-document.addEventListener("gesturestart", function(e){
+/*document.addEventListener("gesturestart", function(e){
 
     e.preventDefault();
 
@@ -425,7 +425,7 @@ document.addEventListener("dblclick", function(e){
 
 let ultimoToque = 0;
 
-/*
+
 document.addEventListener("touchend", function(e){
 
     let ahora = Date.now();
