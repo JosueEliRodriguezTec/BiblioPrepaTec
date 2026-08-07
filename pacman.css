@@ -557,7 +557,7 @@ body{
 
     overflow:hidden;
 
-    touch-action:none;
+   /* touch-action:none;*/
 
     overscroll-behavior:none;
 
