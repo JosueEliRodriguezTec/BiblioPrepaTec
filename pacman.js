@@ -319,16 +319,15 @@ if(e.key=="ArrowLeft"){
 
 // Controles táctiles
 
-document.getElementById("arriba").addEventListener("click", function(){
+document.getElementById("arriba").addEventListener("pointerdown", function(){
 
     direccion = "arriba";
-
     movimientoX = 0;
     movimientoY = -1;
 
 });
 
-document.getElementById("abajo").addEventListener("click", function(){
+document.getElementById("abajo").addEventListener("pointerdown", function(){
 
     direccion = "abajo";
 
@@ -337,7 +336,7 @@ document.getElementById("abajo").addEventListener("click", function(){
 
 });
 
-document.getElementById("izquierda").addEventListener("click", function(){
+document.getElementById("izquierda").addEventListener("pointerdown", function(){
 
     direccion = "izquierda";
 
@@ -346,7 +345,7 @@ document.getElementById("izquierda").addEventListener("click", function(){
 
 });
 
-document.getElementById("derecha").addEventListener("click", function(){
+document.getElementById("derecha").addEventListener("pointerdown", function(){
 
     direccion = "derecha";
 
@@ -426,6 +425,7 @@ document.addEventListener("dblclick", function(e){
 
 let ultimoToque = 0;
 
+/*
 document.addEventListener("touchend", function(e){
 
     let ahora = Date.now();
@@ -439,3 +439,4 @@ document.addEventListener("touchend", function(e){
     ultimoToque = ahora;
 
 }, { passive:false });
+*/
