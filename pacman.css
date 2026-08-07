@@ -119,7 +119,8 @@ h2{
 
     height:auto;
 
-    touch-action:none;
+    touch-action: manipulation;
+
 
     -webkit-user-select:none;
 
