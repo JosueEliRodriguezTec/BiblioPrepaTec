@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,
+initial-scale=1.0,
+maximum-scale=1.0,
+user-scalable=no">
+
+<title>Biblioteca Challenge - Registro</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="registro.css">
+
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <div class="card">
+
+        <h1>🎉 ¡Felicidades!</h1>
+
+        <h2>Biblioteca Challenge</h2>
+
+        <p class="mensaje">
+
+            Has completado los tres niveles.
+
+            <br><br>
+
+            Registra tus datos para finalizar tu participación.
+
+        </p>
+
+        <form id="formRegistro">
+
+            <label for="nombre">
+                Nombre completo
+            </label>
+
+            <input
+                type="text"
+                id="nombre"
+                placeholder="Escribe tu nombre"
+                required>
+
+            <label for="matricula">
+    Matrícula
+</label>
+
+<div class="matriculaBox">
+
+    <span class="prefijo">
+        A
+    </span>
+
+    <input
+        type="text"
+        id="matricula"
+        maxlength="8"
+        inputmode="numeric"
+        pattern="[0-9]{8}"
+        placeholder="01234567"
+        required>
+
+</div>
+
+            <label for="semestre">
+                Semestre
+            </label>
+
+            <select id="semestre" required>
+
+                <option value="">
+                    Selecciona un semestre
+                </option>
+
+                <option value="1">1° Semestre</option>
+                <option value="2">2° Semestre</option>
+                <option value="3">3° Semestre</option>
+                <option value="4">4° Semestre</option>
+                <option value="5">5° Semestre</option>
+                <option value="6">6° Semestre</option>
+
+            </select>
+
+            <button type="submit">
+               
+
+                Finalizar registro
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script type="module" src="registro.js"></script>
+
+</body>
+
+</html>
