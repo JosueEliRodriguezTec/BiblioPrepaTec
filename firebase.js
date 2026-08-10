@@ -1,9 +1,9 @@
 // Importar Firebase
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.1/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
 
 import {
     getFirestore
-} from "https://www.gstatic.com/firebasejs/12.7.1/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
 // Configuración de tu proyecto
 const firebaseConfig = {
