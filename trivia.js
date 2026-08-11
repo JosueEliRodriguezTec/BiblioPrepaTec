@@ -326,7 +326,7 @@ function lanzarFuegos(){
 
 function finalizarJuego(){
 
-    window.location.href = "index.html";
+    window.location.href = "registro.html";
 
 }
 
