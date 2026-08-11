@@ -65,14 +65,15 @@ user-scalable=no">
         A
     </span>
 
-    <input
-        type="text"
-        id="matricula"
-        maxlength="8"
-        inputmode="numeric"
-        pattern="[0-9]{8}"
-        placeholder="01234567"
-        required>
+   <input
+    type="text"
+    id="matricula"
+    placeholder="01234567"
+    maxlength="8"
+    inputmode="numeric"
+    autocomplete="off"
+    required
+    oninput="this.value=this.value.replace(/\D/g,'')">
 
 </div>
 
