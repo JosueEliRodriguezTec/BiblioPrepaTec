@@ -54,3 +54,94 @@ function formatearFecha(fecha){
 }
 
 cargarParticipantes();
+
+async function exportarExcel(){
+
+    try{
+
+        const consulta = await getDocs(
+            collection(db, "participantes")
+        );
+
+        const datos = [];
+
+        consulta.forEach((doc) => {
+
+            const participante = doc.data();
+
+            let fecha = "";
+
+            if(participante.fecha){
+
+                fecha = participante.fecha
+                    .toDate()
+                    .toLocaleString("es-MX");
+
+            }
+
+            datos.push({
+
+                "Nombre": participante.nombre,
+
+                "Matrícula": participante.matricula,
+
+                "Semestre": participante.semestre,
+
+                "Fecha de registro": fecha
+
+            });
+
+        });
+
+
+        if(datos.length === 0){
+
+            alert("No hay participantes registrados para exportar.");
+
+            return;
+
+        }
+
+
+        /* Crear hoja de Excel */
+
+        const hoja =
+            XLSX.utils.json_to_sheet(datos);
+
+
+        /* Crear libro */
+
+        const libro =
+            XLSX.utils.book_new();
+
+
+        XLSX.utils.book_append_sheet(
+            libro,
+            hoja,
+            "Participantes"
+        );
+
+
+        /* Descargar archivo */
+
+        XLSX.writeFile(
+            libro,
+            "Biblioteca_Challenge.xlsx"
+        );
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Error al exportar:",
+            error
+        );
+
+        alert(
+            "Ocurrió un error al exportar los registros."
+        );
+
+    }
+
+}
