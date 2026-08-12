@@ -276,6 +276,9 @@ function cerrarLibro(){
 
 function terminarTrivia(){
 
+    // Marcar que el alumno completó los 3 niveles
+    sessionStorage.setItem("challengeCompletado", "true");
+
     document.getElementById("medallaOro").style.display = "flex";
 
     lanzarFuegos();
