@@ -9,6 +9,19 @@ import {
     where
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
+const autorizado =
+    sessionStorage.getItem("challengeCompletado");
+
+if(autorizado !== "true"){
+
+    alert(
+        "⚠️ Debes completar los tres niveles de Biblioteca Challenge para acceder al registro."
+    );
+
+    window.location.href =
+        "https://josueelirodrigueztec.github.io/BiblioPrepaTec/";
+
+}
 
 const formulario = document.getElementById("formRegistro");
 const mensajeFinal = document.getElementById("mensajeFinal");
@@ -125,7 +138,7 @@ formulario.addEventListener("submit", async function(e){
                 fecha: serverTimestamp()
             }
         );
-
+sessionStorage.removeItem("challengeCompletado");
 
         console.log("✅ Registro guardado correctamente");
 
@@ -188,3 +201,4 @@ formulario.addEventListener("submit", async function(e){
     }
 
 });
+
