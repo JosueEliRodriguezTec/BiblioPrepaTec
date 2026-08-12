@@ -403,3 +403,105 @@ document.addEventListener("touchend", function(e){
     ultimoToque = ahora;
 
 }, { passive:false });
+
+/* =========================================
+   LOGIN eLIBRO
+========================================= */
+
+const btnLoginElibro =
+    document.getElementById("btnLoginElibro");
+
+const btnContinuarLogin =
+    document.getElementById("btnContinuarLogin");
+
+const btnIniciarJuego =
+    document.getElementById("btnIniciarJuego");
+
+let ventanaElibro = null;
+
+
+/* =========================================
+   ABRIR eLIBRO
+========================================= */
+
+btnLoginElibro.addEventListener("click", function () {
+
+    ventanaElibro = window.open(
+        "https://elibro.net/es/ereader/consorcioitesm/302645",
+        "eLibroLogin",
+        "width=1200,height=800"
+    );
+
+    if (!ventanaElibro) {
+
+        alert(
+            "El navegador bloqueó la ventana de inicio de sesión. " +
+            "Permite las ventanas emergentes para continuar."
+        );
+
+        return;
+    }
+
+
+    /* Cambiar botones */
+
+    btnLoginElibro.style.display = "none";
+
+    btnContinuarLogin.style.display = "block";
+
+});
+
+
+/* =========================================
+   CONTINUAR DESPUÉS DEL LOGIN
+========================================= */
+
+btnContinuarLogin.addEventListener("click", function () {
+
+    /* Cerrar ventana de eLibro */
+
+    if (ventanaElibro && !ventanaElibro.closed) {
+
+        ventanaElibro.close();
+
+    }
+
+
+    /* Ocultar botón de continuar */
+
+    btnContinuarLogin.style.display = "none";
+
+
+    /* Cambiar estado de sesión */
+
+    const estadoLogin =
+        document.getElementById("estadoLogin");
+
+    estadoLogin.innerHTML =
+        "🟢 Conectado ✓";
+
+    estadoLogin.style.background =
+        "rgba(0, 120, 60, 0.85)";
+
+    estadoLogin.style.borderColor =
+        "#4ade80";
+
+
+    /* Cambiar botón de iniciar sesión */
+
+    btnLoginElibro.innerHTML =
+        "🟢 Sesión iniciada";
+
+    btnLoginElibro.disabled = true;
+
+    btnLoginElibro.style.opacity = "0.7";
+
+
+    /* Desbloquear juego */
+
+    btnIniciarJuego.disabled = false;
+
+    btnIniciarJuego.innerHTML =
+        "🎮 Iniciar Juego";
+
+});
