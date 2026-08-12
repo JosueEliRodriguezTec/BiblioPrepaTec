@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
 
@@ -11,7 +11,7 @@ initial-scale=1.0,
 maximum-scale=1.0,
 user-scalable=no">
 
-<title>Biblioteca Challenge - Panel de Administración</title>
+<title>Biblioteca Challenge - Registro</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -19,7 +19,7 @@ user-scalable=no">
 
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="admin.css">
+<link rel="stylesheet" href="registro.css">
 
 </head>
 
@@ -29,83 +29,112 @@ user-scalable=no">
 
     <div class="card">
 
-        <h1>📚 Biblioteca Challenge</h1>
+        <h1>🎉 ¡Felicidades!</h1>
 
-        <h2>Panel de Administración</h2>
+        <h2>Biblioteca Challenge</h2>
 
-        <div class="contador">
+        <p class="mensaje">
 
-            👥 Participantes registrados
+            Has completado los tres niveles.
 
-            <span id="totalParticipantes">
+            <br><br>
 
-                0
+            Registra tus datos para finalizar tu participación.
 
-            </span>
+        </p>
 
-        </div>
+        <form id="formRegistro">
 
-        <div class="busqueda">
+            <label for="nombre">
+                Nombre completo
+            </label>
 
             <input
                 type="text"
-                id="buscar"
-                placeholder="Buscar por nombre o matrícula">
+                id="nombre"
+                placeholder="Escribe tu nombre"
+                required>
 
-        </div>
+            <label for="matricula">
+    Matrícula
+</label>
 
-        <div class="tablaContenedor">
+<div class="matriculaBox">
 
-            <table>
+    <span class="prefijo">
+        A
+    </span>
 
-                <thead>
+   <input
+    type="text"
+    id="matricula"
+    placeholder="01234567"
+    maxlength="8"
+    inputmode="numeric"
+    autocomplete="off"
+    required
+    oninput="this.value=this.value.replace(/\D/g,'')">
 
-                    <tr>
+</div>
 
-                        <th>Nombre</th>
+            <label for="semestre">
+                Semestre
+            </label>
 
-                        <th>Matrícula</th>
+            <select id="semestre" required>
 
-                        <th>Semestre</th>
+                <option value="">
+                    Selecciona un semestre
+                </option>
 
-                        <th>Fecha</th>
+                <option value="1">1° Semestre</option>
+                <option value="2">2° Semestre</option>
+                <option value="3">3° Semestre</option>
+                <option value="4">4° Semestre</option>
+                <option value="5">5° Semestre</option>
+                <option value="6">6° Semestre</option>
 
-                    </tr>
+            </select>
 
-                </thead>
+            <button type="submit">
+               
 
-                <tbody id="tablaParticipantes">
-
-                    <!-- Firebase agregará aquí los registros -->
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-        <div class="botones">
-
-            <button id="actualizar">
-
-                🔄 Actualizar
+                Finalizar registro
 
             </button>
 
-            <button id="excel">
+        </form>
 
-                📥 Exportar Excel
+         <div id="mensajeFinal" class="mensajeFinal">
 
-            </button>
-
+        <div class="iconoFinal">
+            🎉
         </div>
+
+        <h1>¡Registro completado!</h1>
+
+        <p>
+            Tu participación en
+            <strong>Biblioteca Challenge</strong>
+            ha sido registrada correctamente.
+        </p>
+
+        <p>
+            ¡Gracias por participar!
+        </p>
+
+        <button type="button" id="btnBiblioteca">
+            📚 Ir a Biblioteca
+        </button>
 
     </div>
 
 </div>
 
-<script type="module" src="admin.js"></script>
+    </div>
+
+
+<script type="module" src="registro.js"></script>
 
 </body>
-
 </html>
