@@ -145,3 +145,6 @@ async function exportarExcel(){
     }
 
 }
+
+document.getElementById("btnExportar")
+    .addEventListener("click", exportarExcel);
