@@ -233,3 +233,116 @@ button:active{
     box-shadow:none;
 
 }
+
+.mensajeFinal{
+
+    display:none;
+
+    text-align:center;
+
+}
+
+.iconoFinal{
+
+    font-size:70px;
+
+    margin-bottom:10px;
+
+}
+
+.mensajeFinal h1{
+
+    color:#1976d2;
+
+    font-size:36px;
+
+    margin-bottom:20px;
+
+}
+
+.mensajeFinal p{
+
+    color:#555;
+
+    font-size:19px;
+
+    line-height:1.5;
+
+    margin-bottom:15px;
+
+}
+
+.mensajeFinal strong{
+
+    color:#1976d2;
+
+}
+
+#btnBiblioteca{
+
+    width:100%;
+
+    margin-top:20px;
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:#2f56d6;
+
+    color:white;
+
+    font-size:20px;
+
+    font-weight:800;
+
+    font-family:"Nunito",sans-serif;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+#btnBiblioteca:hover{
+
+    background:#4169e1;
+
+    transform:scale(1.02);
+
+}
+
+#btnBiblioteca:active{
+
+    transform:scale(.98);
+
+}
+
+@media(max-width:500px){
+
+    .mensajeFinal h1{
+
+        font-size:30px;
+
+    }
+
+    .mensajeFinal p{
+
+        font-size:17px;
+
+    }
+
+    .iconoFinal{
+
+        font-size:60px;
+
+    }
+
+}
+
+.mensajeFinal {
+    display: none;
+    text-align: center;
+}
