@@ -10,7 +10,7 @@ maximum-scale=1.0,
 user-scalable=no,
 viewport-fit=cover">
 
-<title>Biblioteca Match 3</title>
+<title>Biblio Crush</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -64,22 +64,25 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 
 <div id="inicio">
 
-    <!-- Estado de sesión -->
-    <div id="estadoLogin" class="estadoLogin">
-        🔴 Desconectado
-    </div>
-
-    <button
+    
+    <a
         id="btnLoginElibro"
-        class="loginBtn">
+        class="loginBtn"
+        href="https://sentry.libbyapp.com/auth/link/120128?ils=tecmx&continuation=https%3A%2F%2Flibbyapp.com%2Finterview%2Fauthenticate%2Fcard%3Fkey%3Dbibliotecatec%26origination%3Dlibrary%252Fbibliotecatec"
+        target="_blank"
+        rel="noopener">
+
         🔐 Iniciar sesión con Tec
-    </button>
+
+    </a>
 
     <button
         id="btnContinuarLogin"
         class="loginBtn"
         style="display:none;">
-        ✅ Ya inicié sesión
+
+        ✅ Ya inicié sesión — Continuar
+
     </button>
 
     <button
@@ -87,7 +90,9 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         id="btnIniciarJuego"
         class="str"
         disabled>
+
         🔒 Iniciar Juego
+
     </button>
 
 </div>
