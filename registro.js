@@ -202,3 +202,17 @@ sessionStorage.removeItem("challengeCompletado");
 
 });
 
+// =========================================
+// PRUEBA DEL BOTÓN ATRÁS
+// =========================================
+
+history.pushState(null, "", location.href);
+
+window.addEventListener("popstate", function () {
+
+    alert("⚠️ Presionaste el botón Atrás");
+
+    history.pushState(null, "", location.href);
+
+});
+
