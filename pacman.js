@@ -458,11 +458,7 @@ document.addEventListener("touchend", function(e){
 }, { passive:false });
 
 // =========================================
-// PROTECCIÓN DEL BOTÓN ATRÁS
-// =========================================
-
-// =========================================
-// PRUEBA BOTÓN ATRÁS
+// PRUEBA DEL BOTÓN ATRÁS
 // =========================================
 
 history.pushState(null, "", location.href);
