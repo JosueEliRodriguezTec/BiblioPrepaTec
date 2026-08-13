@@ -351,7 +351,7 @@ document.addEventListener("touchend", function(e){
 
 
 // =========================================
-// PRUEBA BOTÓN ATRÁS
+// PRUEBA DEL BOTÓN ATRÁS
 // =========================================
 
 history.pushState(null, "", location.href);
