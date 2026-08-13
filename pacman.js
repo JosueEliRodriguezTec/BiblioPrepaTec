@@ -456,3 +456,21 @@ document.addEventListener("touchend", function(e){
     ultimoToque = ahora;
 
 }, { passive:false });
+
+// =========================================
+// PROTECCIÓN DEL BOTÓN ATRÁS
+// =========================================
+
+// =========================================
+// PRUEBA BOTÓN ATRÁS
+// =========================================
+
+history.pushState(null, "", location.href);
+
+window.addEventListener("popstate", function () {
+
+    alert("⚠️ Presionaste el botón Atrás");
+
+    history.pushState(null, "", location.href);
+
+});
