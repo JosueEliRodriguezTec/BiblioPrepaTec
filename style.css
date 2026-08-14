@@ -1100,3 +1100,22 @@ body{
 
     max-width: 250px;
 }
+
+/* =========================================
+   CRÉDITO DEL DESARROLLADOR
+========================================= */
+
+.creditos {
+    position: fixed;
+    bottom: 8px;
+    right: 10px;
+
+    font-size: 10px;
+    color: white;
+
+    opacity: 0.35;
+
+    z-index: 9999;
+
+    pointer-events: none;
+}
