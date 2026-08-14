@@ -50,13 +50,12 @@ function startGame() {
     aud.play();
 
     document.getElementById("board1").style.display = "none";
-    gameStarted = true;
-    a = setInterval(tim, 1500);
 
+    gameStarted = true;
 }
 
 var scr;
-var time = 60;
+const PUNTOS_META = 300;
 var rand;
 const imagenes = [
     "Sonido.png",
@@ -67,52 +66,6 @@ const imagenes = [
     "Alimentos.png"
 ];
 
-function tim() {
-
-    time--;
-
-    document.getElementById("time").innerHTML = time;
-
-    if (time <= 0) {
-
-    clearInterval(a);
-
-    jugador.monedas = 15;
-
-    document.getElementById("coins").innerHTML = jugador.monedas;
-
-    localStorage.setItem(
-        "jugador",
-        JSON.stringify(jugador)
-    );
-
-    document.getElementById("time").innerHTML = "0";
-
-    // Oculta el tablero
-    document.getElementById("board").style.display = "none";
-
-    // Muestra la pantalla final
-    document.getElementById("board1").style.display = "flex";
-    document.getElementById("inicio").style.display = "none";
-    document.getElementById("final").style.display = "flex";
-
-    // Mostrar puntuación
-    document.getElementById("finalScore").innerHTML = scr;
-
-   const anim = document.getElementById("coinAnimation");
-
-console.log(anim);
-
-anim.classList.remove("show");
-
-void anim.offsetWidth;
-
-anim.classList.add("show");
-
-    return;
-}
-
-}
 
 const width = 8;
 var arr = [];
@@ -258,7 +211,10 @@ function check() {
 
     var flg = false;
 
-    // Horizontales
+    // =========================================
+    // HORIZONTAL
+    // =========================================
+
     for (let i = 0; i < width * width; i++) {
 
         if (i % width < width - 2) {
@@ -274,20 +230,31 @@ function check() {
                 arr[i + 2].style.backgroundImage = "none";
 
                 flg = true;
-if (gameStarted) {
 
-    scr += 10;
+                if (gameStarted) {
 
-    jugador.puntos = scr;
+                    scr += 10;
 
-}
+                    jugador.puntos = scr;
 
-document.getElementById("score").innerHTML = scr;
+                    document.getElementById("score").innerHTML = scr;
+
+                    if (scr >= PUNTOS_META) {
+                        terminarNivel();
+                        return;
+                    }
+
+                }
+
             }
         }
     }
 
-    // Verticales
+
+    // =========================================
+    // VERTICAL
+    // =========================================
+
     for (let i = 0; i < width * (width - 2); i++) {
 
         if (
@@ -302,23 +269,35 @@ document.getElementById("score").innerHTML = scr;
 
             flg = true;
 
-if (gameStarted) {
+            if (gameStarted) {
 
-    scr += 10;
+                scr += 10;
 
-    jugador.puntos = scr;
+                jugador.puntos = scr;
 
-}
+                document.getElementById("score").innerHTML = scr;
 
-document.getElementById("score").innerHTML = scr;
+                if (scr >= PUNTOS_META) {
+                    terminarNivel();
+                    return;
+                }
+
+            }
+
         }
     }
+
+
+    // =========================================
+    // RELLENAR CASILLAS
+    // =========================================
 
     if (flg) {
 
         setTimeout(refill, 100);
 
     }
+
 }
 
 function refill() {
@@ -460,3 +439,34 @@ btnContinuarLogin.addEventListener("click", function () {
         "🎮 Iniciar Juego";
 
 });
+
+function terminarNivel() {
+
+    jugador.monedas = 15;
+
+    document.getElementById("coins").innerHTML =
+        jugador.monedas;
+
+    localStorage.setItem(
+        "jugador",
+        JSON.stringify(jugador)
+    );
+
+    document.getElementById("board").style.display = "none";
+
+    document.getElementById("board1").style.display = "flex";
+
+    document.getElementById("inicio").style.display = "none";
+
+    document.getElementById("final").style.display = "flex";
+
+    document.getElementById("finalScore").innerHTML = scr;
+
+    const anim = document.getElementById("coinAnimation");
+
+    anim.classList.remove("show");
+
+    void anim.offsetWidth;
+
+    anim.classList.add("show");
+}
