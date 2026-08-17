@@ -5,6 +5,11 @@ import {
     getFirestore
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
+import {
+    getAuth
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+
+
 // Configuración de tu proyecto
 const firebaseConfig = {
 
@@ -22,11 +27,21 @@ const firebaseConfig = {
 
 };
 
+
 // Inicializar Firebase
 const app = initializeApp(firebaseConfig);
+
 
 // Inicializar Firestore
 const db = getFirestore(app);
 
-// Exportar la base de datos
-export { db };
+
+// Inicializar Authentication
+const auth = getAuth(app);
+
+
+// Exportar
+export {
+    db,
+    auth
+};
