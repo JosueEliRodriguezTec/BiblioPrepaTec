@@ -1,45 +1,112 @@
-import { db } from "./firebase.js";
+import { db, auth } from "./firebase.js";
 
 import {
     collection,
     getDocs
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
-const tabla = document.getElementById("tablaParticipantes");
+import {
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
 
-const total = document.getElementById("totalParticipantes");
+
+// =========================================
+// ELEMENTOS DEL LOGIN
+// =========================================
+
+const loginAdmin =
+    document.getElementById("loginAdmin");
+
+const panelAdmin =
+    document.getElementById("panelAdmin");
+
+const adminEmail =
+    document.getElementById("adminEmail");
+
+const adminPassword =
+    document.getElementById("adminPassword");
+
+const btnLoginAdmin =
+    document.getElementById("btnLoginAdmin");
+
+const errorLogin =
+    document.getElementById("errorLogin");
+
+
+// =========================================
+// ELEMENTOS DEL PANEL
+// =========================================
+
+const tabla =
+    document.getElementById("tablaParticipantes");
+
+const total =
+    document.getElementById("totalParticipantes");
+
+
+// =========================================
+// CARGAR PARTICIPANTES
+// =========================================
 
 async function cargarParticipantes(){
 
     tabla.innerHTML = "";
 
-    const consulta = await getDocs(collection(db,"participantes"));
+    try{
 
-    total.textContent = consulta.size;
+        const consulta =
+            await getDocs(
+                collection(db,"participantes")
+            );
 
-    consulta.forEach((doc)=>{
+        total.textContent = consulta.size;
 
-        const datos = doc.data();
+        consulta.forEach((doc)=>{
 
-        const fila = document.createElement("tr");
+            const datos = doc.data();
 
-        fila.innerHTML = `
+            const fila =
+                document.createElement("tr");
 
-            <td>${datos.nombre}</td>
+            fila.innerHTML = `
 
-            <td>${datos.matricula}</td>
+                <td>${datos.nombre}</td>
 
-            <td>${datos.semestre}°</td>
+                <td>${datos.matricula}</td>
 
-            <td>${formatearFecha(datos.fecha)}</td>
+                <td>${datos.semestre}°</td>
 
-        `;
+                <td>${formatearFecha(datos.fecha)}</td>
 
-        tabla.appendChild(fila);
+            `;
 
-    });
+            tabla.appendChild(fila);
+
+        });
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Error al cargar participantes:",
+            error
+        );
+
+        alert(
+            "No fue posible cargar los participantes."
+        );
+
+    }
 
 }
+
+
+// =========================================
+// FORMATEAR FECHA
+// =========================================
 
 function formatearFecha(fecha){
 
@@ -49,45 +116,170 @@ function formatearFecha(fecha){
 
     }
 
-    return fecha.toDate().toLocaleString("es-MX");
+    return fecha
+        .toDate()
+        .toLocaleString("es-MX");
 
 }
 
-cargarParticipantes();
+
+// =========================================
+// INICIAR SESIÓN
+// =========================================
+
+btnLoginAdmin.addEventListener(
+    "click",
+    async function(){
+
+        const correo =
+            adminEmail.value.trim();
+
+        const password =
+            adminPassword.value;
+
+        errorLogin.textContent = "";
+
+
+        if(correo === "" || password === ""){
+
+            errorLogin.textContent =
+                "⚠️ Escribe tu correo y contraseña.";
+
+            return;
+
+        }
+
+
+        btnLoginAdmin.disabled = true;
+
+        btnLoginAdmin.textContent =
+            "Verificando...";
+
+
+        try{
+
+            await signInWithEmailAndPassword(
+                auth,
+                correo,
+                password
+            );
+
+        }
+
+        catch(error){
+
+            console.error(
+                "Error de inicio de sesión:",
+                error
+            );
+
+            errorLogin.textContent =
+                "❌ Correo o contraseña incorrectos.";
+
+            btnLoginAdmin.disabled = false;
+
+            btnLoginAdmin.textContent =
+                "🔐 Entrar";
+
+        }
+
+    }
+);
+
+
+// =========================================
+// COMPROBAR SESIÓN
+// =========================================
+
+onAuthStateChanged(
+    auth,
+    async function(usuario){
+
+        if(usuario){
+
+            console.log(
+                "✅ Administrador autenticado:",
+                usuario.email
+            );
+
+
+            // Ocultar login
+            loginAdmin.style.display = "none";
+
+
+            // Mostrar panel
+            panelAdmin.style.display = "block";
+
+
+            // Cargar participantes
+            await cargarParticipantes();
+
+        }
+
+        else{
+
+            console.log(
+                "🔒 No hay sesión administrativa."
+            );
+
+
+            // Mostrar login
+            loginAdmin.style.display = "flex";
+
+
+            // Ocultar panel
+            panelAdmin.style.display = "none";
+
+        }
+
+    }
+);
+
+
+// =========================================
+// EXPORTAR EXCEL
+// =========================================
 
 async function exportarExcel(){
 
     try{
 
-        const consulta = await getDocs(
-            collection(db, "participantes")
-        );
+        const consulta =
+            await getDocs(
+                collection(db, "participantes")
+            );
 
         const datos = [];
 
         consulta.forEach((doc) => {
 
-            const participante = doc.data();
+            const participante =
+                doc.data();
 
             let fecha = "";
 
             if(participante.fecha){
 
-                fecha = participante.fecha
-                    .toDate()
-                    .toLocaleString("es-MX");
+                fecha =
+                    participante.fecha
+                        .toDate()
+                        .toLocaleString("es-MX");
 
             }
 
             datos.push({
 
-                "Nombre": participante.nombre,
+                "Nombre":
+                    participante.nombre,
 
-                "Matrícula": participante.matricula,
+                "Matrícula":
+                    participante.matricula,
 
-                "Semestre": participante.semestre,
+                "Semestre":
+                    participante.semestre,
 
-                "Fecha de registro": fecha
+                "Fecha de registro":
+                    fecha
 
             });
 
@@ -96,21 +288,21 @@ async function exportarExcel(){
 
         if(datos.length === 0){
 
-            alert("No hay participantes registrados para exportar.");
+            alert(
+                "No hay participantes registrados para exportar."
+            );
 
             return;
 
         }
 
 
-        /* Crear hoja de Excel */
-
+        // Crear hoja de Excel
         const hoja =
             XLSX.utils.json_to_sheet(datos);
 
 
-        /* Crear libro */
-
+        // Crear libro
         const libro =
             XLSX.utils.book_new();
 
@@ -122,8 +314,7 @@ async function exportarExcel(){
         );
 
 
-        /* Descargar archivo */
-
+        // Descargar archivo
         XLSX.writeFile(
             libro,
             "Biblioteca_Challenge.xlsx"
@@ -146,5 +337,40 @@ async function exportarExcel(){
 
 }
 
+
+// =========================================
+// BOTÓN EXPORTAR
+// =========================================
+
 document.getElementById("btnExportar")
-    .addEventListener("click", exportarExcel);
+    .addEventListener(
+        "click",
+        exportarExcel
+    );
+
+
+// =========================================
+// BOTÓN ACTUALIZAR
+// =========================================
+
+document.getElementById("actualizar")
+    .addEventListener(
+        "click",
+        async function(){
+
+            const boton = this;
+
+            boton.disabled = true;
+
+            boton.textContent =
+                "Actualizando...";
+
+            await cargarParticipantes();
+
+            boton.disabled = false;
+
+            boton.textContent =
+                "🔄 Actualizar";
+
+        }
+    );
