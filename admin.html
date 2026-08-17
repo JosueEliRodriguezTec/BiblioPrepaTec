@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<!--
+    Biblioteca Challenge
+    © 2026 Josue Rodríguez
+    Creación, diseño y desarrollo: Josue Rodríguez
+-->
 <html lang="es">
 
 <head>
@@ -27,6 +32,43 @@ user-scalable=no">
 
 <body>
 
+    <!-- =========================================
+     LOGIN ADMINISTRATIVO
+========================================= -->
+
+<div id="loginAdmin" class="loginAdmin">
+
+    <div class="loginBox">
+
+        <h1>🔐 Acceso administrativo</h1>
+
+        <p>
+            Ingresa tus credenciales para continuar.
+        </p>
+
+        <input
+            type="email"
+            id="adminEmail"
+            placeholder="Correo electrónico"
+            autocomplete="username">
+
+        <input
+            type="password"
+            id="adminPassword"
+            placeholder="Contraseña"
+            autocomplete="current-password">
+
+        <button id="btnLoginAdmin">
+            🔐 Entrar
+        </button>
+
+        <p id="errorLogin" class="errorLogin"></p>
+
+    </div>
+
+</div>
+
+<div id="panelAdmin" style="display:none;">
 <div class="contenedor">
 
     <div class="card">
@@ -102,9 +144,16 @@ user-scalable=no">
 
         </div>
 
+        </div>
+
     </div>
 
 </div>
+
+<div class="creditos">
+    © 2026 Josue E. Rodríguez
+</div>
+
 
 <script type="module" src="admin.js"></script>
 
