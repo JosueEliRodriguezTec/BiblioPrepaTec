@@ -46,27 +46,34 @@ user-scalable=no">
             Ingresa tus credenciales para continuar.
         </p>
 
-        <input
-            type="email"
-            id="adminEmail"
-            placeholder="Correo electrónico"
-            autocomplete="username">
+        <form id="formLoginAdmin">
 
-        <input
-            type="password"
-            id="adminPassword"
-            placeholder="Contraseña"
-            autocomplete="current-password">
+            <input
+                type="email"
+                id="adminEmail"
+                placeholder="Correo electrónico"
+                autocomplete="username"
+                required>
 
-        <button id="btnLoginAdmin">
-            🔐 Entrar
-        </button>
+            <input
+                type="password"
+                id="adminPassword"
+                placeholder="Contraseña"
+                autocomplete="current-password"
+                required>
+
+            <button type="submit" id="btnLoginAdmin">
+                🔐 Entrar
+            </button>
+
+        </form>
 
         <p id="errorLogin" class="errorLogin"></p>
 
     </div>
 
 </div>
+
 
 <div id="panelAdmin" style="display:none;">
 <div class="contenedor">
