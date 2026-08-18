@@ -31,6 +31,9 @@ const adminPassword =
 const btnLoginAdmin =
     document.getElementById("btnLoginAdmin");
 
+const formLoginAdmin =
+    document.getElementById("formLoginAdmin");
+
 const errorLogin =
     document.getElementById("errorLogin");
 
@@ -127,9 +130,11 @@ function formatearFecha(fecha){
 // INICIAR SESIÓN
 // =========================================
 
-btnLoginAdmin.addEventListener(
-    "click",
-    async function(){
+formLoginAdmin.addEventListener(
+    "submit",
+    async function(e){
+
+        e.preventDefault();
 
         const correo =
             adminEmail.value.trim();
