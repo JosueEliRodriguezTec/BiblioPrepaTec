@@ -50,6 +50,13 @@ const tabla =
 const total =
     document.getElementById("totalParticipantes");
 
+    const buscar =
+    document.getElementById("buscar");
+
+    let participantes = [];
+
+    
+
 
 // =========================================
 // CARGAR PARTICIPANTES
@@ -70,9 +77,13 @@ async function cargarParticipantes(){
     );
         total.textContent = consulta.size;
 
-        consulta.forEach((doc)=>{
+participantes = [];
+
+consulta.forEach((doc)=>{
 
             const datos = doc.data();
+
+            participantes.push(datos);
 
             const fila =
                 document.createElement("tr");
