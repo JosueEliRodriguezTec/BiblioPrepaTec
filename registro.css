@@ -364,3 +364,44 @@ button:active{
 
     pointer-events: none;
 }
+
+/* =========================================
+   SATISFACCIÓN
+========================================= */
+
+.satisfaccion {
+    margin-top: 8px;
+    margin-bottom: 18px;
+}
+
+.satisfaccion > label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.opcionesSatisfaccion {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+}
+
+.opcionSatisfaccion {
+    flex: 1;
+    height: 60px;
+    border: 2px solid transparent;
+    border-radius: 18px;
+    background: #f1f3f5;
+    font-size: 30px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+}
+
+.opcionSatisfaccion:hover {
+    transform: scale(1.03);
+}
+
+.opcionSatisfaccion:active {
+    transform: scale(0.97);
+}
