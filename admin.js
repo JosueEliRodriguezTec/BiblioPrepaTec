@@ -436,8 +436,12 @@ buscar.addEventListener("input", function(){
         participantes.filter(function(participante){
 
             return participante.matricula
-                .toLowerCase()
-                .includes(texto);
+    .toLowerCase()
+    .includes(texto) ||
+
+    participante.nombre
+    .toLowerCase()
+    .includes(texto);
 
         });
 
