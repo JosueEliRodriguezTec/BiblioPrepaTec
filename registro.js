@@ -27,6 +27,33 @@ const formulario = document.getElementById("formRegistro");
 const mensajeFinal = document.getElementById("mensajeFinal");
 const btnBiblioteca = document.getElementById("btnBiblioteca");
 
+const TEMPORADA_ACTUAL = "México";
+
+let satisfaccion = "";
+
+const opcionesSatisfaccion =
+    document.querySelectorAll(".opcionSatisfaccion");
+
+
+opcionesSatisfaccion.forEach(function(opcion){
+
+    opcion.addEventListener("click", function(){
+
+        satisfaccion =
+            this.dataset.satisfaccion;
+
+        opcionesSatisfaccion.forEach(function(item){
+
+            item.classList.remove("seleccionada");
+
+        });
+
+        this.classList.add("seleccionada");
+
+    });
+
+});
+
 
 /* =========================================
    BOTÓN IR A BIBLIOTECA
@@ -88,6 +115,14 @@ formulario.addEventListener("submit", async function(e){
 
     }
 
+    if(satisfaccion === ""){
+
+    alert("⚠️ Selecciona cómo fue tu experiencia.");
+
+    return;
+
+}
+
 
     /* =========================================
        CAMBIAR BOTÓN
@@ -135,6 +170,8 @@ formulario.addEventListener("submit", async function(e){
                 nombre: nombre,
                 matricula: matricula,
                 semestre: semestre,
+                satisfaccion: satisfaccion,
+                temporada: TEMPORADA_ACTUAL,
                 fecha: serverTimestamp()
             }
         );
@@ -215,4 +252,3 @@ window.addEventListener("popstate", function () {
     history.pushState(null, "", location.href);
 
 });
-
