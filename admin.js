@@ -274,9 +274,12 @@ async function exportarExcel(){
     try{
 
         const consulta =
-            await getDocs(
-                collection(db, "participantes")
-            );
+    await getDocs(
+        query(
+            collection(db, "participantes"),
+            orderBy("fecha", "desc")
+        )
+    );
 
         const datos = [];
 
