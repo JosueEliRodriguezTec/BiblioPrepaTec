@@ -2,7 +2,9 @@ import { db, auth } from "./firebase.js";
 
 import {
     collection,
-    getDocs
+    getDocs,
+    query,
+    orderBy
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
 import {
@@ -59,11 +61,13 @@ async function cargarParticipantes(){
 
     try{
 
-        const consulta =
-            await getDocs(
-                collection(db,"participantes")
-            );
-
+       const consulta =
+    await getDocs(
+        query(
+            collection(db, "participantes"),
+            orderBy("fecha", "desc")
+        )
+    );
         total.textContent = consulta.size;
 
         consulta.forEach((doc)=>{
@@ -80,6 +84,8 @@ async function cargarParticipantes(){
                 <td>${datos.matricula}</td>
 
                 <td>${datos.semestre}°</td>
+
+                    <td>${formatearSatisfaccion(datos.satisfaccion)}</td>
 
                 <td>${formatearFecha(datos.fecha)}</td>
 
@@ -122,6 +128,24 @@ function formatearFecha(fecha){
     return fecha
         .toDate()
         .toLocaleString("es-MX");
+
+}
+
+function formatearSatisfaccion(satisfaccion){
+
+    if(satisfaccion === "Feliz"){
+        return "😊";
+    }
+
+    if(satisfaccion === "Regular"){
+        return "😐";
+    }
+
+    if(satisfaccion === "Triste"){
+        return "😞";
+    }
+
+    return "-";
 
 }
 
@@ -282,6 +306,9 @@ async function exportarExcel(){
 
                 "Semestre":
                     participante.semestre,
+
+                    "Satisfacción":
+        participante.satisfaccion || "-",
 
                 "Fecha de registro":
                     fecha
