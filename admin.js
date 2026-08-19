@@ -420,3 +420,48 @@ document.getElementById("actualizar")
 
         }
     );
+
+    // =========================================
+// BUSCAR POR MATRÍCULA
+// =========================================
+
+buscar.addEventListener("input", function(){
+
+    const texto =
+        this.value.trim().toLowerCase();
+
+    tabla.innerHTML = "";
+
+    const resultados =
+        participantes.filter(function(participante){
+
+            return participante.matricula
+                .toLowerCase()
+                .includes(texto);
+
+        });
+
+    resultados.forEach(function(datos){
+
+        const fila =
+            document.createElement("tr");
+
+        fila.innerHTML = `
+
+            <td>${datos.nombre}</td>
+
+            <td>${datos.matricula}</td>
+
+            <td>${datos.semestre}°</td>
+
+            <td>${formatearSatisfaccion(datos.satisfaccion)}</td>
+
+            <td>${formatearFecha(datos.fecha)}</td>
+
+        `;
+
+        tabla.appendChild(fila);
+
+    });
+
+});
