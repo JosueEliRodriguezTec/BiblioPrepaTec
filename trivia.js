@@ -220,30 +220,32 @@ for(let i=0; i<botones.length; i++){
 }
 
 
+
+
 function revisarRespuesta(indice){
 
     let pregunta = preguntasJuego[preguntaActual];
 
-    // Desactivar los botones mientras se revisa la respuesta
+    // Evitar que el alumno pulse varias respuestas
     botones.forEach(b => b.disabled = true);
 
     if(indice === pregunta.correcta){
 
         botones[indice].classList.add("correcta");
 
-        // Abrir eLibro en una ventana emergente
+        // Abrir eLibro intentando usar una ventana emergente
         const ventanaEbook = window.open(
             LIBRO_EBOOK,
             "bibliotecaEbook",
             "popup=yes,width=1000,height=750,resizable=yes,scrollbars=yes"
         );
 
-        // Si el navegador bloquea la ventana
+        // Si el navegador bloquea la apertura
         if(!ventanaEbook){
 
             alert(
-                "El navegador bloqueó la ventana de eLibro. " +
-                "Permite las ventanas emergentes y vuelve a intentarlo."
+                "No se pudo abrir eLibro. " +
+                "Permite las ventanas emergentes e inténtalo de nuevo."
             );
 
             botones.forEach(b => b.disabled = false);
@@ -252,18 +254,61 @@ function revisarRespuesta(indice){
             return;
         }
 
-        // Detectar cuando el alumno cierre la ventana de eLibro
-        const revisarCierre = setInterval(() => {
+        // Ocultar el botón de continuar mientras corre el tiempo
+        const botonContinuar = document.getElementById("continuarTrivia");
+        botonContinuar.style.display = "none";
+
+        let triviaAvanzada = false;
+
+        // Avanzar una sola vez, aunque se detecte el cierre
+        // y se cumplan los 10 segundos casi al mismo tiempo
+       function avanzarTrivia(){
+
+    if(triviaAvanzada) return;
+
+    triviaAvanzada = true;
+
+    clearInterval(vigilarVentana);
+    clearTimeout(temporizadorCierre);
+
+    botonContinuar.style.display = "none";
+
+    cerrarLibro();
+}
+
+        // Si el alumno cierra eLibro manualmente, avanzar
+        const vigilarVentana = setInterval(() => {
 
             if(ventanaEbook.closed){
-
-                clearInterval(revisarCierre);
-
-                cerrarLibro();
-
+                avanzarTrivia();
             }
 
         }, 500);
+
+        // Intentar cerrar eLibro después de 10 segundos
+        const temporizadorCierre = setTimeout(() => {
+
+            if(!ventanaEbook.closed){
+                ventanaEbook.close();
+            }
+
+            // Comprobar si el navegador permitió cerrarlo
+            setTimeout(() => {
+
+                if(ventanaEbook.closed){
+
+                    avanzarTrivia();
+
+                }else{
+
+                    // Si no se pudo cerrar, ofrecer continuar manualmente
+                    botonContinuar.style.display = "block";
+
+                }
+
+            }, 300);
+
+        }, 10000);
 
     }else{
 
@@ -272,7 +317,6 @@ function revisarRespuesta(indice){
         setTimeout(() => {
 
             botones[indice].classList.remove("incorrecta");
-
             mostrarIncorrecto();
 
         }, 700);
@@ -280,6 +324,8 @@ function revisarRespuesta(indice){
     }
 
 }
+
+
 
 
 function mostrarIncorrecto(){
@@ -330,6 +376,16 @@ function cerrarLibro(){
     }
 
 }
+
+
+function continuarTrivia(){
+
+    document.getElementById("continuarTrivia").style.display = "none";
+
+    cerrarLibro();
+
+}
+
 
 function terminarTrivia(){
 
